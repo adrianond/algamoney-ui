@@ -1,1 +1,71 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #404c51;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+input {
+    height: 30px;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+        margin: 0 auto;
+    }
+}
+
+.label {
+    margin: 0.5em;
+}
+
+.col-valor-header {
+      width: 120px;
+}
+
+.col-valor {
+    text-align: right !important;
+  }
+
+.col-data-header {
+    width: 120px;
+}
+
+.col-data {
+    text-align: center !important;
+}
+
+.col-acoes-header {
+    width: 115x;
+}
+
+.col-acoes {
+    width: 115px !important;
+    text-align: center !important;
+}
+
+@media (min-width:  613px) {
+    .col-acoes {
+    max-width: fit-content;
+    margin-left: auto;
+    }
+}
+
+.col-acoes .p-button {
+    margin: 2px;
+}
+
+.p-tooltip > .p-tooltip-text {
+    width: 70px !important;
+    height: 35px !important;
+    text-align: center;
+    padding: 8px;
+}
