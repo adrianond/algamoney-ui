@@ -1,0 +1,31 @@
+.content-grid {
+    display: grid;
+    column-gap: 5px;
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.content {
+    display: grid;
+    column-gap: 18px;
+    /* Responsive layout - makes a one column layout instead of a two-column layout */
+    @media (min-width: 1200px) {
+        grid-template-columns: 40% 40% 20%
+    }
+}
+
+.content-grid-child {
+    display: grid;
+}
+
+.logradouro {
+    width: auto;
+    @media (min-width: 1200px) {
+        width: 1050px;
+    }
+}
+
+.numero-logradouro {
+    max-width: 115px;
+}

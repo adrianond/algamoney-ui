@@ -7,33 +7,27 @@ body {
 
 label {
     font-weight: bold;
-    margin-top: 10px;
-    margin-left: 5px;
+    margin: 0.2em;
+    font-size: 16px;
+}
+
+.container {
+    margin-left: 10px;
     margin-right: 5px;
-}
-
-input {
-    height: 30px;
-}
-
-@media (min-width: 1200px) {
-    .container {
+    /*se na tela (navegador) tiver no minino 1200 px, aplica as regras da classe container*/
+    @media (min-width: 1200px) {
         width: 1170px;
         margin: 0 auto;
     }
 }
 
-.label {
-    margin: 0.5em;
-}
-
 .col-valor-header {
-      width: 120px;
+    width: 120px;
 }
 
 .col-valor {
     text-align: right !important;
-  }
+}
 
 .col-data-header {
     width: 120px;
@@ -48,24 +42,45 @@ input {
 }
 
 .col-acoes {
-    width: 115px !important;
-    text-align: center !important;
-}
-
-@media (min-width:  613px) {
-    .col-acoes {
+    width: 115px;
+    //ajusta os icones de acordo com o tamanho da tela
     max-width: fit-content;
     margin-left: auto;
-    }
 }
 
-.col-acoes .p-button {
-    margin: 2px;
+.col-acoes button {
+    margin-left: 5px;
 }
 
-.p-tooltip > .p-tooltip-text {
-    width: 70px !important;
-    height: 35px !important;
-    text-align: center;
-    padding: 8px;
+td {
+    padding: 5px !important;
+}
+
+th {
+    background-color: #e6e6fa !important;
+    padding: 5px !important;
+}
+
+.p-button {
+    margin-top: 10px;
+}
+
+div {
+    margin-top: 5px;
+}
+
+table {
+    margin-top: 20px;
+}
+
+.content-flex {
+    display: flex;
+    column-gap: 10px;
+    margin-top: 10px;
+}
+
+.content-flex a {
+    text-decoration: none;
+    margin-top: 20px;
+    color: #333ab7;
 }
