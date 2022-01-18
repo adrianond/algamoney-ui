@@ -25,7 +25,9 @@ import { AppMessageComponent } from './app-message/app-message.component';
 import { MessageModule } from 'primeng/message';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { PesquisaPessoasComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
+import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component'
 
 
 registerLocaleData(ptBr);
@@ -38,7 +40,9 @@ registerLocaleData(ptBr);
     PesquisaPessoasComponent,
     LancamentoCadastroComponent,
     PessoaCadastroComponent,
-    AppMessageComponent
+    AppMessageComponent,
+    LancamentosGridComponent,
+    PessoasGridComponent
   ],
   imports: [
     BrowserModule,
