@@ -12,6 +12,8 @@ import { ButtonModule } from 'primeng/button';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { TableModule } from 'primeng/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageModule } from 'primeng/message';
 
 
 
@@ -31,7 +33,10 @@ import { TableModule } from 'primeng/table';
     InputTextModule,
     InputTextareaModule,
     ButtonModule,
-    TableModule
+    TableModule,
+		BrowserAnimationsModule,
+    MessageModule
+
   ],
   exports: [
     LancamentoCadastroComponent,

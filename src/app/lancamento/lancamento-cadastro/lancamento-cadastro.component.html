@@ -38,8 +38,8 @@
                         name="valor" #valor="ngModel" required>
                 </div>
                 <!-- COMPONENTE DE MESSAGEM PRIMENG -->
-               <!--  <p-message severity="error" text="Informe uma descrição"
-                    *ngIf="descricao.hasError('required') && descricao.touched"></p-message> -->
+               <p-message severity="error" text="Informe uma descrição"
+                    *ngIf="descricao.hasError('required') && descricao.touched"></p-message>
                 <!-- MEU COMPONENTE DE MENSAGEM -->
                 <!-- <app-message [control]="descricao" error="minlength"
                     text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres">
