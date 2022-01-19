@@ -8,6 +8,7 @@ import { PessoasGridComponent } from '../pessoa/pessoas-grid/pessoas-grid.compon
 import {TooltipModule} from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
 import { PessoasPesquisaComponent } from '../pessoa/pessoas-pesquisa/pessoas-pesquisa.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PessoasPesquisaComponent } from '../pessoa/pessoas-pesquisa/pessoas-pes
     InputTextModule,
     ButtonModule,
     TooltipModule,
-    TableModule
+    TableModule,
+    NgxMaskModule.forRoot()
   ],
 
   exports: [
