@@ -19,7 +19,6 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputMaskModule } from 'primeng/inputmask'; */
-import { AppMessageComponent } from './app-message/app-message.component';
 /* import { MessageModule } from 'primeng/message'; */
 /* import { CurrencyMaskModule } from 'ng2-currency-mask'; */
 /* import { NgxMaskModule, IConfig } from 'ngx-mask'; */
@@ -31,7 +30,6 @@ registerLocaleData(ptBr);
 	declarations: [
 		AppComponent,
 		NavbarComponent,
-		AppMessageComponent
 ],
 	imports: [
 		BrowserModule,

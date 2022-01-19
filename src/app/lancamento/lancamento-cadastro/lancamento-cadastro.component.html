@@ -13,16 +13,16 @@
                     <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="false" [showIcon]="false"
                         ngModel name="vencimento" #vencimento="ngModel" [required]="true">
                     </p-calendar>
-                   <!--  <app-message [control]="vencimento" error="required" text="Informe a data de vecimento"> 
-                    </app-message> -->
+                    <app-message [control]="vencimento" error="required" text="Informe a data de vecimento"> 
+                    </app-message>
                 </div>
                 <div>
                     <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
                     <p-calendar dateFormat="dd/mm/yy" ngModel name="recebimento_pagamento"
                         #recebimento_pagamento="ngModel" [required]="true"></p-calendar>
-                    <!-- <app-message [control]="recebimento_pagamento" error="required"
+                    <app-message [control]="recebimento_pagamento" error="required"
                         text="Informe a data de {{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }} ">
-                    </app-message> -->
+                    </app-message>
                 </div>
             </div>
             <div class="content-grid">
@@ -41,10 +41,10 @@
                <p-message severity="error" text="Informe uma descrição"
                     *ngIf="descricao.hasError('required') && descricao.touched"></p-message>
                 <!-- MEU COMPONENTE DE MENSAGEM -->
-                <!-- <app-message [control]="descricao" error="minlength"
+                <app-message [control]="descricao" error="minlength"
                     text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres">
                 </app-message>
-                <app-message [control]="valor" error="required" text="Informe um valor"></app-message> -->
+                <app-message [control]="valor" error="required" text="Informe um valor"></app-message>
             </div>
             <div class="content">
                 <div class="p-col-12">
@@ -52,14 +52,14 @@
                     <p-dropdown [options]="categorias" placeholder="Selecione" optionLabel="descricao"
                         optionValue="codigo" #categoriaSelecionada ngModel name="categoria" #categoria="ngModel"
                         [required]="true"></p-dropdown>
-                   <!--  <app-message [control]="categoria" error="required" text="Informe uma categoria"></app-message> -->
+                    <app-message [control]="categoria" error="required" text="Informe uma categoria"></app-message>
                     {{ categoriaSelecionada.value }}
                 </div>
                 <div class="p-col-12">
                     <label>Pessoa</label>
                     <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true" ngModel name="pessoa"
                         #pessoa="ngModel" [required]="true"></p-dropdown>
-                    <!-- <app-message [control]="pessoa" error="required" text="Informe uma pessoa"></app-message> -->
+                    <app-message [control]="pessoa" error="required" text="Informe uma pessoa"></app-message>
                     {{ pessoa.value }}
                 </div>
             </div>

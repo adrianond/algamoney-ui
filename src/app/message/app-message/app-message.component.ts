@@ -28,9 +28,6 @@ export class AppMessageComponent implements OnInit {
   }
 
   temErro(): boolean {
-   /*  console.log(this.error)
-    console.log(this.control)
-    console.log(this.control.hasError(this.error) && this.control.touched) */
    return this.control.hasError(this.error) && this.control.touched;
   }
 

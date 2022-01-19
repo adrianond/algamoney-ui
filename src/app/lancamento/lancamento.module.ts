@@ -14,8 +14,7 @@ import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.co
 import { TableModule } from 'primeng/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageModule } from 'primeng/message';
-
-
+import { AlgamoneyMessageModule } from '../message/message.module';
 
 @NgModule({
   declarations: [
@@ -35,8 +34,8 @@ import { MessageModule } from 'primeng/message';
     ButtonModule,
     TableModule,
 		BrowserAnimationsModule,
-    MessageModule
-
+    MessageModule,
+    AlgamoneyMessageModule
   ],
   exports: [
     LancamentoCadastroComponent,
