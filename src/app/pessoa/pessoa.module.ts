@@ -9,7 +9,8 @@ import {TooltipModule} from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
 import { PessoasPesquisaComponent } from '../pessoa/pessoas-pesquisa/pessoas-pesquisa.component';
 import { NgxMaskModule } from 'ngx-mask';
-import { AlgamoneyMessageModule } from '../message/message.module';
+import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { AlgamoneyMessageModule } from '../message/message.module';
     ButtonModule,
     TooltipModule,
     TableModule,
-    AlgamoneyMessageModule,
+    SharedModule,
     NgxMaskModule.forRoot()
   ],
 

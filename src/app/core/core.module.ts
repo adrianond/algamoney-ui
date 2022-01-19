@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppMessageComponent } from './app-message/app-message.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
 @NgModule({
   declarations: [
-    AppMessageComponent
+    NavbarComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    AppMessageComponent
+    NavbarComponent
   ]
 })
-export class AlgamoneyMessageModule { }
+export class CoreModule { }

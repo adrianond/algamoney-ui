@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
@@ -14,7 +15,7 @@ import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.co
 import { TableModule } from 'primeng/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageModule } from 'primeng/message';
-import { AlgamoneyMessageModule } from '../message/message.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { AlgamoneyMessageModule } from '../message/message.module';
     TableModule,
 		BrowserAnimationsModule,
     MessageModule,
-    AlgamoneyMessageModule
+    SharedModule
   ],
   exports: [
     LancamentoCadastroComponent,
