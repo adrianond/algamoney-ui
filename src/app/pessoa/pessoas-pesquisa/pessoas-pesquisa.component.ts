@@ -1,26 +1,40 @@
 import { Component, OnInit } from '@angular/core';
+import { PessoaService } from '../service/pessoa.service';
+import { PessoaFiltro } from '../model/pessoaFiltro';
+import { ErrorHanderService } from 'src/app/core/error-handler-service';
 
 @Component({
-  selector: 'app-pessoas-pesquisa',
-  templateUrl: './pessoas-pesquisa.component.html',
-  styleUrls: ['./pessoas-pesquisa.component.scss']
+	selector: 'app-pessoas-pesquisa',
+	templateUrl: './pessoas-pesquisa.component.html',
+	styleUrls: [ './pessoas-pesquisa.component.scss' ]
 })
 export class PessoasPesquisaComponent implements OnInit {
+	pessoaFiltro = new PessoaFiltro();
+	resultado!: any;
 
-  pessoas = [
-    { nome: 'CARLOS', cidade: 'São Paulo', uf: 'SP', status: true },
-    { nome: 'PEDRO', cidade: 'São Paulo', uf: 'SP', status: false },
-    { nome: 'CARLA', cidade: 'São Paulo', uf: 'SP', status: false },
-    { nome: 'RICK', cidade: 'São Paulo', uf: 'SP', status: true },
-    { nome: 'ANA LUCIA', cidade: 'São Paulo', uf: 'SP', status: true },
-    { nome: 'MARIA DA SILVA', cidade: 'São Paulo', uf: 'SP', status: true },
-    { nome: 'CARLOS ANDRE', cidade: 'São Paulo', uf: 'SP', status: false },
-    { nome: 'ITALO FERREIRA', cidade: 'São Paulo', uf: 'SP', status: true },
-  ];
+	constructor(
+		private pessoaService: PessoaService,
+		private errorHanderService: ErrorHanderService
+		) {}
 
-  constructor() { }
+	ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
+	pesquisar(pagina: number = this.pessoaFiltro.page) {
+		this.pessoaFiltro.page = pagina;
+		this.pessoaService.getPessoasComPaginacao(this.pessoaFiltro).subscribe(
+			(response) => {
+				this.resultado = {
+					pessoas: response.pessoas.content,
+					totalRegistros: response.pessoas.totalElements
+				}
+			},
+			(err) => {
+				this.errorHanderService.handle(err)
+			}
+		);
+	}
 
+	aoMudarPagina(pagina: number) {
+		this.pesquisar(pagina);
+	}
 }

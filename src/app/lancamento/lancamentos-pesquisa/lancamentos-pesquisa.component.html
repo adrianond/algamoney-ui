@@ -1,28 +1,83 @@
 <div class="container">
-    <div class="p-grid">
-        <div class="p-col-12">
-            <h1>Lançamentos</h1>
-        </div>
-        <div class="p-col-12 p-fluid">
-            <label>Descrição</label>
-            <input pInputText type="text">
-        </div>
-        <div class="p-col-12">
-            <label>Vencimento</label>
-            <div class="p-col-12">
-                <input class="vencimento" pInputText type="text">
-                <label style="padding: 5px;">até</label>
-                <input pInputText type="text">
-            </div>
-        </div>
-        <div class="p-col-12">
-            <button pButton class="button" type="submit" label="Pesquisar"></button>
-        </div>
+    <form autocomplete="off" (ngSubmit)="pesquisarComPaginacao()">
         <div class="p-grid">
             <div class="p-col-12">
-                <app-lancamentos-grid [lancamentos]="lancamentos"></app-lancamentos-grid> 
+                <h1>Lançamentos</h1>
             </div>
+            <div class="p-col-12 p-fluid">
+                <label>Descrição</label>
+                <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
+            </div>
+            <div class="p-col-12">
+                <label>Vencimento</label>
+                <div class="p-col-12">
+                    <p-calendar dateFormat="dd/mm/yy" name="vencimentoInicio"
+                        [(ngModel)]="filtro.dataVencimentoInicio"></p-calendar>
+                    <label style="padding: 5px;">até</label>
+                    <p-calendar dateFormat="dd/mm/yy" name="vencimentoFim"
+                        [(ngModel)]="filtro.dataVencimentoFim"></p-calendar>
+                </div>
+            </div>
+            <div class="p-col-12">
+                <button pButton class="button" type="submit" label="Pesquisar"></button>
+            </div>
+            <div class="p-grid">
+                <div class="p-col-12">
+                    <!--Ao carregar a página o método onLazyLoad é executado e já é realizado uma pesquisa
+                        assim não precisa chamar a chamada do método de pesquisa no componente, senão
+                        será realizado duas pesquisas -->
+                    <p-table [value]="lancamentos" [paginator]="true" [rows]="filtro.size" [lazy]="true" [totalRecords]="totalRegistros"
+                    (onLazyLoad)="aoMudarPagina($event)" #tabela>
+                
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Pessoa</th>
+                            <th>Descrição</th>
+                            <th class="col-data-header">Vencimento</th>
+                            <th class="col-data-header">Pagamento</th>
+                            <th class="col-valor-header">Valor</th>
+                            <th class="col-acoes-header"></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-lancamento>
+                        <tr>
+                            <td>
+                                <span class="p-column-title">Pessoa</span>
+                                {{ lancamento.pessoa.nome }}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Descrição</span>
+                                {{ lancamento.descricao }}
+                            </td>
+                            <td class="col-data">
+                                <span class="p-column-title">Vencimento</span>
+                                {{ lancamento.dataVencimento }}
+                            </td>
+                            <td class="col-data">
+                                <span class="p-column-title">Pagamento</span>
+                                {{ lancamento.dataPagamento }}
+                            </td>
+                            <td class="col-valor" [style.color]="lancamento.tipo === 'DESPESA' ? 'red' : 'blue'">
+                                <span class="p-column-title">Valor</span>
+                                {{ lancamento.valor | currency : 'BRL'}}
+                            </td>
+                            <td class="col-acoes">
+                                <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+                                <button pButton icon="pi pi-trash" (click)="confirmarExclusao(lancamento)" pTooltip="Excluir" tooltipPosition="top"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template ngIf*="lancamentos.length == 0" ng pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="6">
+                                Nenhum lançamento encontrado
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+                </div>
+            </div>
+            <a style="margin-top: 5px;" pButton label="Novo Lançamento"></a>
         </div>
-        <a class="button" pButton label="Novo Lançamento"></a>
-    </div>
+    </form>
 </div>

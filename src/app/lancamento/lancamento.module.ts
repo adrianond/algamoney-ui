@@ -11,17 +11,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
-import { LancamentosGridComponent } from './lancamentos-grid/lancamentos-grid.component';
 import { TableModule } from 'primeng/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageModule } from 'primeng/message';
 import { SharedModule } from '../shared/shared.module';
+import { TooltipModule } from 'primeng/tooltip';
+
 
 @NgModule({
   declarations: [
     LancamentoCadastroComponent,
-    LancamentosPesquisaComponent,
-    LancamentosGridComponent
+    LancamentosPesquisaComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +36,8 @@ import { SharedModule } from '../shared/shared.module';
     TableModule,
 		BrowserAnimationsModule,
     MessageModule,
-    SharedModule
+    SharedModule,
+    TooltipModule
   ],
   exports: [
     LancamentoCadastroComponent,

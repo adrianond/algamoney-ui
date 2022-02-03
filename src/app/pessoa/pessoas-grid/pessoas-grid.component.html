@@ -1,4 +1,5 @@
-<p-table [value]="pessoas" [paginator]="true" [rows]="2" styleClass="p-datatable-gridlines">
+<p-table [value]="resultado?.pessoas" [paginator]="true" [rows]="filtro.size" [lazy]="true" [totalRecords]="resultado?.totalRegistros"
+(onLazyLoad)="aoMudarPagina($event)" styleClass="p-datatable-gridlines" #tabela>
     <ng-template pTemplate="header">
         <tr>
             <th>Nome</th>
@@ -16,21 +17,21 @@
             </td>
             <td>
                 <span class="p-column-title">Cidade</span>
-                {{ pessoa.cidade }}
+                {{ pessoa.endereco.cidade }}
             </td>
             <td>
                 <span class="p-column-title">Estado</span>
-                {{ pessoa.uf }}
+                {{ pessoa.endereco.estado }}
             </td>
             <td>
                 <span class="p-column-title">Status</span>
-                <a style="cursor: pointer"
-                    [pTooltip]="pessoa.status ? 'Desativar' : 'Ativar'">{{pessoa.status ? 'Ativo' :
-                    'Inativo' }}</a> 
+                <a style="cursor: pointer" [pTooltip]="pessoa.status ? 'Desativar' : 'Ativar'">{{pessoa.status ? 'Ativo'
+                    :
+                    'Inativo' }}</a>
             </td>
             <td class="col-acoes">
                 <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-                <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+                <button pButton icon="pi pi-trash" (click)="confirmarExclusao(pessoa)" pTooltip="Excluir" tooltipPosition="top"></button>
             </td>
         </tr>
     </ng-template>
