@@ -1,3 +1,4 @@
+import { Telefone } from './telefone';
 import { Endereco } from "./endereco";
 
 export class Pessoa {
@@ -7,4 +8,5 @@ export class Pessoa {
     dataCadastro!: string;
     dataAtualizacao!: string;
     endereco!: Endereco
+    telefones!: Telefone[];
 }

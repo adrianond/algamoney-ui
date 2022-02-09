@@ -1,8 +1,10 @@
+import { Pessoa } from './../model/pessoa';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { PessoasResponse } from '../model/response/PessoasResponse';
 import { Observable } from 'rxjs';
 import { PessoaFiltro } from '../model/pessoaFiltro';
+import { PessoasResponse } from '../model/response/PessoasResponse';
+
 
 @Injectable({
 	providedIn: 'root'
@@ -25,6 +27,14 @@ export class PessoaService {
 
 	excluir<T>(id: number): Observable<T> {
 		return this.http.delete<T>(`${this.baseUrl}/person/${id}`);
+	}
+
+	alterarStatus<T>(pessoa: Pessoa) {
+	   return this.http.put<T>(`${this.baseUrl}/person/${pessoa.id}/ativo`, !pessoa.ativo);
+	}
+
+	consultarPessoas<T>(): Observable<any> {
+		return this.http.get<T>(`${this.baseUrl}`);
 	}
 }
 

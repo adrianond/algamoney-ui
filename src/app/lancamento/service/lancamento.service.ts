@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Lancamento } from '../model/lancamento';
+import { Lancamento, LancamentoCadastro } from '../model/lancamento';
 import { LancamentoFiltro } from '../model/lancamentoFiltro';
 import { LancamentosResponse } from '../model/response/lancamentosResponse';
 import { DatePipe } from '@angular/common';
@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
 	providedIn: 'root'
 })
 export class LancamentoService {
-	baseUrl = 'http://localhost:8080/api/entries';
+ 	baseUrl = 'http://localhost:8080/api/entries';
 
 	constructor(protected http: HttpClient, private datePipe: DatePipe) {}
 
@@ -42,4 +42,8 @@ export class LancamentoService {
 	excluir<T>(id: number): Observable<T> {
 		return this.http.delete<T>(`${this.baseUrl}/entry/${id}`);
 	}
+
+	salvar(lancamento: LancamentoCadastro) {
+		return this.http.post<LancamentoCadastro>(this.baseUrl,  lancamento  );	
+	  }
 }

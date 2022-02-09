@@ -10,9 +10,10 @@ export class ErrorHanderService {
   constructor(private messageService: MessageService) { }
 
   handle(errorResponse: any) {
-    let statusCode = errorResponse.error.httpStatusCode;
+    let statusCode = errorResponse.error?.httpStatusCode;
     switch (statusCode) {
       case 400:
+        this.messageService.add({ severity: 'error', detail: 'Sem autorização' })
         break;
       case 401:
         this.messageService.add({ severity: 'error', detail: 'Sem autorização' })

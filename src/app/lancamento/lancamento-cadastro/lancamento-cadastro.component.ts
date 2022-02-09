@@ -1,5 +1,14 @@
+import { Pessoa } from './../../pessoa/model/pessoa';
+import { PessoaService } from './../../pessoa/service/pessoa.service';
 import { Component, OnInit } from '@angular/core';
+import { ErrorHanderService } from 'src/app/core/error-handler-service';
 import { Categoria } from '../model/categoria';
+import { CategoriaService } from './../../shared/service/categoria.service';
+import { LancamentoCadastro } from '../model/lancamento';
+import { NgForm } from '@angular/forms';
+import { ddMMyyyy } from 'src/app/shared/utils/date-utils';
+import { LancamentoService } from '../service/lancamento.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -8,38 +17,55 @@ import { Categoria } from '../model/categoria';
 })
 export class LancamentoCadastroComponent implements OnInit {
 
-  categoriaSelecionada!: Categoria; 
-  categorias!: Categoria[];
-  
-    tipos = [
-      { label: 'Receita', value: 'RECEITA' },
-      { label: 'Despesa', value: 'DESPESA' },
-    ];
-  
-    categories = [
-      { label: 'Alimentação', value: 1 },
-      { label: 'Transporte', value: 2 },
-    ];
-  
-    pessoas = [
-      { label: 'João da Silva', value: 4 },
-      { label: 'Sebastião Souza', value: 9 },
-      { label: 'Maria Abadia da Silva Santos Cruz', value: 3 },
-    ];
-  
-  constructor() {
-        this.categorias = [ 
-        {descricao: 'Estudo', codigo: 1, },
-        {descricao: 'Cartao', codigo: 2, },
-   ]   
+  categoriaSelecionada!: Categoria;
+  categorias: Categoria[] = [];
+  pessoas: Pessoa[] = [];
+  lancamento: LancamentoCadastro = new LancamentoCadastro();
+
+  tipos = [
+    { label: 'Receita', value: 'RECEITA' },
+    { label: 'Despesa', value: 'DESPESA' },
+  ];
+
+
+  constructor(private categoriaService: CategoriaService,
+    private pessoaService: PessoaService,
+    private errorHanderService: ErrorHanderService,
+    private lancamentoService: LancamentoService,
+    private messageService: MessageService
+  ) { }
+
+  ngOnInit(): void {
+    this.consultarCategorias();
+    this.consultarPessoas();
   }
-  
-    ngOnInit(): void {
-      this.categoriaSelecionada = this.categorias[0];
-    }
-  
-    onSubmit(lancamentoCadastroForm : any) {
-      console.log(' valide ', lancamentoCadastroForm.valid)
-    }
+
+  private consultarCategorias() {
+    this.categoriaService.consultarCategorias().subscribe(response => {
+      this.categorias = response.categorias.map((c: any) => ({ label: c.nome, value: c.id }));
+    }, (err => {
+      this.errorHanderService.handle(err);
+    }));
+  }
+
+  private consultarPessoas() {
+    this.pessoaService.consultarPessoas().subscribe(response => {
+      this.pessoas = response.pessoas.map((p: any) => ({ label: p.nome, value: p.id }));
+    }, (err => {
+      this.errorHanderService.handle(err);
+    }));
+  }
+
+  onSubmit(lancamentoCadastroForm: NgForm) {
+    this.lancamento = lancamentoCadastroForm.value;
+    this.lancamento.dataVencimento = ddMMyyyy(lancamentoCadastroForm.value.dataVencimento);
+    this.lancamento.dataRecebimentoPagamento = ddMMyyyy(lancamentoCadastroForm.value.dataRecebimentoPagamento);
+    this.lancamentoService.salvar(this.lancamento).subscribe(response => {
+      this.messageService.add({ severity: 'success', detail: 'Lançamento cadastrado com sucesso.' })
+      lancamentoCadastroForm.resetForm();
+    }, (err) => {
+      this.errorHanderService.handle(err);
+    })
+  }
 
 }

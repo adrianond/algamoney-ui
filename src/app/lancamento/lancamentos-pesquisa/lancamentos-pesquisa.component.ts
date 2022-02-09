@@ -76,7 +76,7 @@ export class LancamentosPesquisaComponent implements OnInit {
 				this.lancamentos = response.lancamentos;
 			},
 			(err) => {
-				console.log(err);
+				this.errorHanderService.handle(err);
 			}
 		);
 	}
