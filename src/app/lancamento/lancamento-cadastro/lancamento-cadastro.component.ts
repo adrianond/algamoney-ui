@@ -1,4 +1,3 @@
-import { Pessoa } from './../../pessoa/model/pessoa';
 import { PessoaService } from './../../pessoa/service/pessoa.service';
 import { Component, OnInit } from '@angular/core';
 import { ErrorHanderService } from 'src/app/core/error-handler-service';
@@ -9,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { ddMMyyyy } from 'src/app/shared/utils/date-utils';
 import { LancamentoService } from '../service/lancamento.service';
 import { MessageService } from 'primeng/api';
+import { Pessoa } from 'src/app/pessoa/model/model';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -57,7 +57,7 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   onSubmit(lancamentoCadastroForm: NgForm) {
-    this.lancamento = lancamentoCadastroForm.value;
+    //this.lancamento = lancamentoCadastroForm.value;
     this.lancamento.dataVencimento = ddMMyyyy(lancamentoCadastroForm.value.dataVencimento);
     this.lancamento.dataRecebimentoPagamento = ddMMyyyy(lancamentoCadastroForm.value.dataRecebimentoPagamento);
     this.lancamentoService.salvar(this.lancamento).subscribe(response => {

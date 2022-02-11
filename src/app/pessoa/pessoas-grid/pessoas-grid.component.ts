@@ -1,8 +1,8 @@
-import { Pessoa } from './../model/pessoa';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ErrorHanderService } from 'src/app/core/error-handler-service';
+import { Pessoa } from '../model/model';
 import { PessoaFiltro } from '../model/pessoaFiltro';
 import { PessoaService } from '../service/pessoa.service';
 

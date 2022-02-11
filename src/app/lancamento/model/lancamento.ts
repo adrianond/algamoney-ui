@@ -1,5 +1,5 @@
+import { Pessoa } from "src/app/pessoa/model/model";
 import { Categoria } from "./categoria";
-import { Pessoa } from "../../pessoa/model/pessoa";
 
 export class Lancamento {
     id!: number;

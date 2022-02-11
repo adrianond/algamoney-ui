@@ -1,9 +1,9 @@
-import { Pessoa } from './../model/pessoa';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PessoaFiltro } from '../model/pessoaFiltro';
 import { PessoasResponse } from '../model/response/PessoasResponse';
+import { Pessoa } from '../model/model';
 
 
 @Injectable({
@@ -35,6 +35,10 @@ export class PessoaService {
 
 	consultarPessoas<T>(): Observable<any> {
 		return this.http.get<T>(`${this.baseUrl}`);
+	}
+
+	salvar<T>(pessoa: Pessoa) {
+	  return this.http.post<T>(this.baseUrl, pessoa);
 	}
 }
 
