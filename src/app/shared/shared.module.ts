@@ -1,18 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppMessageComponent } from './app-message/app-message.component';
+import { InputColoridoDirective } from './directives/inpt-colorido.directive';
+import { UpperCaseNoCharactersDirective } from './directives/uppercase-no-characteres.directive';
+
 
 
 
 @NgModule({
   declarations: [
-    AppMessageComponent
+    AppMessageComponent,
+    InputColoridoDirective,
+    UpperCaseNoCharactersDirective,
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    AppMessageComponent
+    AppMessageComponent,
+    InputColoridoDirective,
+    UpperCaseNoCharactersDirective
   ]
 })
 export class SharedModule { }

@@ -1,3 +1,4 @@
+import { InputNumberModule } from 'primeng/inputnumber';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
@@ -27,6 +28,7 @@ import { SharedModule } from '../shared/shared.module';
     TooltipModule,
     TableModule,
     SharedModule,
+    InputNumberModule,
     NgxMaskModule.forRoot()
   ],
 
