@@ -12,7 +12,7 @@ label {
 }
 
 td {
-    padding: 5px !important;
+    padding: 3px !important;
 }
 
 th {
@@ -20,12 +20,8 @@ th {
     padding: 5px !important;
 }
 
-.p-button {
-    margin-top: 10px;
-}
-
 div {
-    margin-top: 5px;
+    margin-top: 3px;
 }
 
 table {
@@ -34,6 +30,17 @@ table {
 
 button {
     width: 100px;
+    height: 30px;
+}
+
+input {
+    height: 30px;
+}
+
+h1 {
+    margin-top: 0px;
+    font-weight: 400;
+    margin-bottom: 0px;
 }
 
 .main-container {
@@ -55,39 +62,23 @@ button {
 
 .main-container__content-button a {
     text-decoration: none;
-    margin-top: 20px;
+    margin-top: 8px;
     color: #333ab7;
 }
 
-.col-valor-header {
-    width: 120px;
-}
-
-.col-valor {
-    text-align: right !important;
-}
-
-.col-data-header {
-    width: 120px;
-}
-
-.col-data {
-    text-align: center !important;
-}
-
-.col-acoes-header {
-    width: 115x;
-}
-
-.col-acoes {
-    width: 115px;
+.main-container__col-acoes {
     //ajusta os icones de acordo com o tamanho da tela
     max-width: fit-content;
     margin-left: auto;
 }
 
-.col-acoes button {
+.main-container__col-acoes button {
     margin-left: 5px;
+}
+
+.main-container__col-acoes .p-button.p-button-icon-only {
+   width: 25px !important;
+   height: 20px !important;
 }
 
 
