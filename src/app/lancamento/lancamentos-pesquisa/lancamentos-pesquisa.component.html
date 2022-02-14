@@ -1,13 +1,15 @@
-<div class="container">
+<div class="main-container">
     <form autocomplete="off" (ngSubmit)="pesquisarComPaginacao()">
         <div class="p-grid">
             <div class="p-col-12">
                 <h1>Lançamentos</h1>
             </div>
+
             <div class="p-col-12 p-fluid">
                 <label>Descrição</label>
                 <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
             </div>
+
             <div class="p-col-12">
                 <label>Vencimento</label>
                 <div class="p-col-12">
@@ -18,9 +20,11 @@
                         [(ngModel)]="filtro.dataVencimentoFim"></p-calendar>
                 </div>
             </div>
+
             <div class="p-col-12">
                 <button pButton class="button" type="submit" label="Pesquisar"></button>
             </div>
+
             <div class="p-grid">
                 <div class="p-col-12">
                     <!--Ao carregar a página o método onLazyLoad é executado e já é realizado uma pesquisa
@@ -31,14 +35,15 @@
                 
                     <ng-template pTemplate="header">
                         <tr>
-                            <th>Pessoa</th>
-                            <th>Descrição</th>
-                            <th class="col-data-header">Vencimento</th>
-                            <th class="col-data-header">Pagamento</th>
-                            <th class="col-valor-header">Valor</th>
-                            <th class="col-acoes-header"></th>
+                            <th class="main-container__col-data-header">Pessoa</th>
+                            <th class="main-container__col-data-header">Descrição</th>
+                            <th class="main-container__col-data-header">Vencimento</th>
+                            <th class="main-container__col-data-header">Pagamento</th>
+                            <th>Valor</th>
+                            <th></th>
                         </tr>
                     </ng-template>
+                   
                     <ng-template pTemplate="body" let-lancamento>
                         <tr>
                             <td>
@@ -49,24 +54,25 @@
                                 <span class="p-column-title">Descrição</span>
                                 {{ lancamento.descricao }}
                             </td>
-                            <td class="col-data">
+                            <td class="main-container__col-data">
                                 <span class="p-column-title">Vencimento</span>
                                 {{ lancamento.dataVencimento }}
                             </td>
-                            <td class="col-data">
+                            <td class="main-container__col-data">
                                 <span class="p-column-title">Pagamento</span>
                                 {{ lancamento.dataPagamento }}
                             </td>
-                            <td class="col-valor" [style.color]="lancamento.tipo === 'DESPESA' ? 'red' : 'blue'">
+                            <td class="main-container__col-data" [style.color]="lancamento.tipo === 'DESPESA' ? 'red' : 'blue'">
                                 <span class="p-column-title">Valor</span>
                                 {{ lancamento.valor | currency : 'BRL'}}
                             </td>
-                            <td class="col-acoes">
+                           <td class="main-container__col-acoes">
                                 <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-                                <button pButton icon="pi pi-trash" (click)="confirmarExclusao(lancamento)" pTooltip="Excluir" tooltipPosition="top"></button>
+                                <button pButton icon="pi pi-trash" (click)="confirmarExclusao(lancamento)" pTooltip="Excluir" tooltipPosition="top"></button> 
                             </td>
                         </tr>
                     </ng-template>
+                   
                     <ng-template ngIf*="lancamentos.length == 0" ng pTemplate="emptymessage">
                         <tr>
                             <td colspan="6">
