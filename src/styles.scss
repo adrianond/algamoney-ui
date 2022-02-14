@@ -11,14 +11,52 @@ label {
     font-size: 16px;
 }
 
-.container {
-    margin-left: 10px;
-    margin-right: 5px;
+td {
+    padding: 5px !important;
+}
+
+th {
+    background-color: #e6e6fa !important;
+    padding: 5px !important;
+}
+
+.p-button {
+    margin-top: 10px;
+}
+
+div {
+    margin-top: 5px;
+}
+
+table {
+    margin-top: 20px;
+}
+
+button {
+    width: 100px;
+}
+
+.main-container {
+    margin-left: 20px;
+    padding: 5px;
+    margin-right: 20px;
     /*se na tela (navegador) tiver no minino 1200 px, aplica as regras da classe container*/
     @media (min-width: 1200px) {
         width: 1170px;
         margin: 0 auto;
     }
+}
+
+.main-container__content-button {
+    display: flex;
+    column-gap: 10px;
+    margin-top: 10px;
+}
+
+.main-container__content-button a {
+    text-decoration: none;
+    margin-top: 20px;
+    color: #333ab7;
 }
 
 .col-valor-header {
@@ -52,35 +90,4 @@ label {
     margin-left: 5px;
 }
 
-td {
-    padding: 5px !important;
-}
 
-th {
-    background-color: #e6e6fa !important;
-    padding: 5px !important;
-}
-
-.p-button {
-    margin-top: 10px;
-}
-
-div {
-    margin-top: 5px;
-}
-
-table {
-    margin-top: 20px;
-}
-
-.content-flex {
-    display: flex;
-    column-gap: 10px;
-    margin-top: 10px;
-}
-
-.content-flex a {
-    text-decoration: none;
-    margin-top: 20px;
-    color: #333ab7;
-}

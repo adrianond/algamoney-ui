@@ -1,13 +1,18 @@
+
 .navbar {
     padding: 20px 0 10px;
     background-color: #1e94d2;
 }
 
-.navbar-toggle {
+.navbar__menu-container {
+    margin-left: 30px;
+}
+
+.p-col-12 a {
     color: #fff;
 }
 
-.navbar-menu {
+.navbar__menu {
     @media (min-width: 1200px) {
         width: 210px;
     }
@@ -24,7 +29,7 @@
     list-style: none;
 }
 
-.navbar-usuario {
+.navbar__menu__usuario {
     padding: 18px;
     margin-bottom: 15px;
     border-bottom: 1px solid #525151;
@@ -34,15 +39,15 @@
     color: #fff;
 }
 
-.navbar-menuitem {
+.navbar__menu__menuitem {
     padding: 15px;
 }
 
-.navbar-menuitem a {
+.navbar__menu__menuitem a {
     color: #c0bbb7;
     text-decoration: none;
 }
 
-.navbar-menuitem a:hover {
+.navbar__menu__menuitem a:hover {
     color: #fff;
 }

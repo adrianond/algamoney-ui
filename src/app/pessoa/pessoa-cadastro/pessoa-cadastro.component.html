@@ -1,66 +1,74 @@
-<div class="container">
+<div class="main-container">
     <form #pessoaCadastroForm="ngForm" (ngSubmit)="onSubmit(pessoaCadastroForm)">
         <div class="p-grid">
             <div class="p-col-12">
                 <h1>Nova Pessoa</h1>
             </div>
-            <div class="p-col-12 p-fluid">
+            
+             <div class="p-col-12 p-fluid">
                 <label>Nome</label>
                 <input pInputText type="text" appInputColorido upperCaseNoCharacters [(ngModel)]="pessoa.nome"
                     name="nome" #nome="ngModel" required minlength="5">
-                <app-message [control]="nome" error="required" text="Informe o nome"></app-message>
-                <app-message [control]="nome" error="minlength"
-                    text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres"></app-message>
-            </div>
-            <div class="content-grid">
-                <div class="content-grid-child">
+                    <app-message [control]="nome" error="required" text="Informe o nome"></app-message>
+                    <app-message [control]="nome" error="minlength"
+                            text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres">
+                    </app-message>
+                </div> 
+            
+            <div class="main-container__content-grid">
+                <div class="main-container__content-grid-child">
                     <label>Logradouro</label>
-                    <input class="logradouro" upperCaseNoCharacters pInputText type="text"
-                        [(ngModel)]="pessoa.endereco.logradouro" name="logradouro" #logradouro="ngModel" required>
+                    <input upperCaseNoCharacters pInputText type="text" [(ngModel)]="pessoa.endereco.logradouro"
+                        name="logradouro" #logradouro="ngModel" required>
                 </div>
-                <app-message [control]="logradouro" error="required" text="Informe o logradouro"></app-message>
-                <div class="content-grid-child">
+                <div class="main-container__content-grid-child">
                     <label>Número</label>
-                    <p-inputNumber [(ngModel)]="pessoa.endereco.numero" mode="decimal" inputId="withoutgrouping"
+                    <p-inputNumber style="width: 200px;" [(ngModel)]="pessoa.endereco.numero" mode="decimal" inputId="withoutgrouping"
                         [useGrouping]="false" name="numero" #numero="ngModel">
                     </p-inputNumber>
                 </div>
                 <app-message [control]="numero" error="required" text="Informe o numero"></app-message>
             </div>
-            <div class="content">
-                <div class="content-grid-child">
+            
+
+             <div class="main-container__content">
+                <div class="main-container__content-grid-child">
                     <label>Complemento</label>
                     <input pInputText type="text" upperCaseNoCharacters name="complemento"
                         [(ngModel)]="pessoa.endereco.complemento">
                 </div>
-                <div class="content-grid-child">
+                <div class="main-container__content-grid-child">
                     <label>Bairro</label>
                     <input pInputText type="text" upperCaseNoCharacters [(ngModel)]="pessoa.endereco.bairro"
                         name="bairro" #bairro="ngModel" required>
                 </div>
-                <app-message [control]="bairro" error="required" text="Informe o bairro"></app-message>
-                <div class="content-grid-child">
+                <div class="main-container__content-grid-child">
                     <label>CEP</label>
                     <input pInputText type="text" [(ngModel)]="pessoa.endereco.cep" name="cep" #cep="ngModel" required
                         mask="00000-000" maxlength="9">
                 </div>
+                <app-message [control]="bairro" error="required" text="Informe o bairro"></app-message>
                 <app-message [control]="cep" error="required" text="Informe o cep"></app-message>
-            </div>
-            <div class="content-grid">
-                <div class="content-grid-child">
+            </div> 
+            
+           
+            <div class="main-container__content-grid">
+                <div class="main-container__content-grid-child">
                     <label>Cidade</label>
                     <input pInputText type="text" upperCaseNoCharacters [(ngModel)]="pessoa.endereco.cidade"
                         name="cidade" #cidade="ngModel" required>
-                    <app-message [control]="cidade" error="required" text="Informe a cidade"></app-message>
                 </div>
-                <div class="content-grid-child">
+                <div class="main-container__content-grid-child">
                     <label>Estado</label>
-                    <input pInputText type="text" upperCaseNoCharacters [(ngModel)]="pessoa.endereco.estado"
+                    <input style="width: 200px;" pInputText type="text" upperCaseNoCharacters [(ngModel)]="pessoa.endereco.estado"
                         name="estado" #estado="ngModel" required>
                 </div>
+                <app-message [control]="cidade" error="required" text="Informe a cidade"></app-message>
                 <app-message [control]="estado" error="required" text="Informe o estado"></app-message>
-            </div>
-            <div class="content-flex">
+            </div> 
+            
+ 
+            <div class="main-container__content-button">
                 <button pButton type="submit" label="Salvar" [disabled]="!pessoaCadastroForm.valid"></button>
                 <button pButton type="button" label="Novo" class="p-button-info"></button>
                 <a href="javascript:;">Voltar para a pesquisa</a>
