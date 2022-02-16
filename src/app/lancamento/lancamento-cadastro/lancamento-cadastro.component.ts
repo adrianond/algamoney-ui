@@ -75,7 +75,7 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   atualizar(lancamentoCadastroForm: NgForm) {
-    this.lancamento.dataVencimento = this.lancamento.dataVencimento.replace(/[//"]/g, '-');
+    this.lancamento.dataVencimento = this.lancamento.dataVencimento.replace(/[//]/g, '-')
     this.lancamento.dataRecebimentoPagamento = this.lancamento.dataRecebimentoPagamento.replace(/[//"]/g, '-');
 
     this.lancamentoService.atualizar(this.lancamento).subscribe(response => {

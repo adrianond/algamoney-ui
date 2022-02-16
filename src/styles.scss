@@ -21,7 +21,7 @@ th {
 }
 
 div {
-    margin-top: 3px;
+    margin-top: 5px;
 }
 
 table {
@@ -80,5 +80,13 @@ h1 {
    width: 25px !important;
    height: 20px !important;
 }
+
+.main-container .p-buttonset .p-button:first-of-type {
+    height: 30px !important;
+  }
+
+  .main-container .p-buttonset .p-button:last-of-type {
+    height: 30px !important;
+  }
 
 

@@ -1,6 +1,6 @@
 .main-container__content-grid {
     display: grid;
-    column-gap: 5px;
+    column-gap: 8px;
     grid-template-columns: 80% 20%;
     //abaixo ou igual 1050 altera para dispaly block
     @media (max-width: 1050px) {

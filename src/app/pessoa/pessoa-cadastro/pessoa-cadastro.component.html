@@ -23,7 +23,7 @@
                 </div>
                 <div class="main-container__content-grid-child">
                     <label>Número</label>
-                    <p-inputNumber style="width: 200px;" [(ngModel)]="pessoa.endereco.numero" mode="decimal" inputId="withoutgrouping"
+                    <p-inputNumber  [(ngModel)]="pessoa.endereco.numero" mode="decimal" inputId="withoutgrouping"
                         [useGrouping]="false" name="numero" #numero="ngModel">
                     </p-inputNumber>
                 </div>
@@ -31,7 +31,7 @@
             </div>
             
 
-             <div class="main-container__content">
+            <div class="main-container__content">
                 <div class="main-container__content-grid-child">
                     <label>Complemento</label>
                     <input pInputText type="text" upperCaseNoCharacters name="complemento"
@@ -49,7 +49,7 @@
                 </div>
                 <app-message [control]="bairro" error="required" text="Informe o bairro"></app-message>
                 <app-message [control]="cep" error="required" text="Informe o cep"></app-message>
-            </div> 
+            </div>  
             
            
             <div class="main-container__content-grid">
@@ -70,7 +70,7 @@
  
             <div class="main-container__content-button">
                 <button pButton type="submit" label="Salvar" [disabled]="!pessoaCadastroForm.valid"></button>
-                <button pButton type="button" label="Novo" class="p-button-info"></button>
+               <!--  <button pButton type="button" label="Novo" class="p-button-info"></button> -->
                 <a routerLink="/pessoas">Voltar para a pesquisa</a>
             </div>
         </div>

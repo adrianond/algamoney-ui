@@ -1,18 +1,19 @@
 <div class="main-container">
     <form #lancamentoCadastroForm="ngForm" (ngSubmit)="onSubmit(lancamentoCadastroForm)">
         <div class="p-grid">
-            <h1>Novo lançamento</h1>
-            <p-selectButton [options]="tipos" [(ngModel)]="lancamento.tipo" #tipo name="tipo"></p-selectButton>
+            <h1>{{ state?.atualizar ? 'Alterar Lançamento' : 'Novo Lançamento' }}</h1>
+            <p-selectButton [options]="tipos" [(ngModel)]="lancamento.tipo" #tipo name="tipo"
+            [style]="{'width':'500px'}"></p-selectButton>
 
-            <div class="main-container__content-grid">
-                <div class="main-container__content-grid-child">
+            <div class="main-container__content-grid-column">
+                <div class="main-container__content-grid">
                     <label>Vencimento</label>
                     <p-calendar dateFormat="dd/mm/yy" [inline]="false" [readonlyInput]="false" [showIcon]="false"
                         [(ngModel)]="lancamento.dataVencimento" name="dataVencimento" #dataVencimento="ngModel"
                         [required]="true">
                     </p-calendar>
                 </div>
-                <div class="main-container__content-grid-child">
+                <div class="main-container__content-grid">
                     <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
                     <p-calendar dateFormat="dd/mm/yy" name="dataRecebimentoPagamento"
                         [(ngModel)]="lancamento.dataRecebimentoPagamento" #recebimento_pagamento="ngModel"
@@ -25,49 +26,52 @@
                 </app-message>
             </div>
 
-            <div class="main-container__content-grid-child">
-                <label>Descrição</label>
-                <input pInputText type="text"upperCaseNoCharacters  name="descricao" [(ngModel)]="lancamento.descricao" #descricao="ngModel"
-                    required minlength="5">
-                <p-message severity="error" text="Informe uma descrição"
-                    *ngIf="descricao.hasError('required') && descricao.touched"></p-message>
-                <app-message [control]="descricao" error="minlength"
-                    text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message>
+            <div class="main-container__content-grid-column-desc">
+                <div class="main-container__content-grid">
+                    <label>Descrição</label>
+                    <input pInputText type="text" upperCaseNoCharacters name="descricao"
+                        [(ngModel)]="lancamento.descricao" #descricao="ngModel" required minlength="5">
+                    <p-message severity="error" text="Informe uma descrição"
+                        *ngIf="descricao.hasError('required') && descricao.touched"></p-message>
+                    <app-message [control]="descricao" error="minlength"
+                        text="Mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message>
+                </div>
+                <div class="main-container__content-grid">
+                    <label>Valor</label>
+                    <input pInputText type="text" placeholder="0,00" currencyMask style="width: 200px;"
+                        [options]="{ prefix: 'R$', thousands: '.', decimal: ',', allowNegative: false }"
+                        [(ngModel)]="lancamento.valor" name="valor" #valor="ngModel" required>
+                    <app-message [control]="valor" error="required" text="Informe um valor"></app-message>
+                </div>
             </div>
 
-            <div class="main-container__content-grid-child">
-                <label>Valor</label>
-                <input pInputText type="text" placeholder="0,00" currencyMask style="width: 200px;"
-                    [options]="{ prefix: 'R$', thousands: '.', decimal: ',', allowNegative: false }"
-                    [(ngModel)]="lancamento.valor" name="valor" #valor="ngModel" required>
-                <app-message [control]="valor" error="required" text="Informe um valor"></app-message>
-            </div>
-
-            <div class="main-container__content">
-                <div class="p-col-12">
+            <div class="main-container__content-grid-column">
+                <div>
                     <label>Categoria</label>
-                    <p-dropdown [options]="categorias" placeholder="Selecione" name="idCategoria" #categoria="ngModel"
+                    <p-dropdown [style]="{'width': '300px', 'height': '30px', 'align-items': 'center'}"
+                        [options]="categorias" placeholder="Selecione" name="idCategoria" #categoria="ngModel"
                         [(ngModel)]="lancamento.idCategoria" [required]="true"></p-dropdown>
                     <app-message [control]="categoria" error="required" text="Informe uma categoria"></app-message>
                 </div>
                 <div class="p-col-12">
                     <label>Pessoa</label>
-                    <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true"
-                        [(ngModel)]="lancamento.idPessoa" name="idPessoa" #pessoa="ngModel" [required]="true">
+                    <p-dropdown [style]="{'width': '300px', 'height': '30px', 'align-items': 'center'}"
+                        [options]="pessoas" placeholder="Selecione" [filter]="true" [(ngModel)]="lancamento.idPessoa"
+                        name="idPessoa" #pessoa="ngModel" [required]="true">
                     </p-dropdown>
                     <app-message [control]="pessoa" error="required" text="Informe uma pessoa"></app-message>
                 </div>
             </div>
 
-            <div class="p-col-12  p-fluid">
+            <div style="margin-top: 10px;" class="p-col-12  p-fluid">
                 <label>Observação</label>
-                <textarea upperCaseNoCharacters pInputTextarea rows="3" [(ngModel)]="lancamento.observacao" name="observacao" cols="100%"
-                    maxlength="4000"></textarea>
+                <textarea upperCaseNoCharacters pInputTextarea rows="3" [(ngModel)]="lancamento.observacao"
+                    name="observacao" cols="100%" maxlength="4000"></textarea>
             </div>
 
             <div class="main-container__content-button">
                 <button pButton type="submit" label="Salvar" [disabled]="!lancamentoCadastroForm.valid"></button>
-                <button pButton type="button" label="Novo" class="p-button-info"></button>
+                <!-- <button pButton type="button" label="Novo" class="p-button-info"></button> -->
                 <a routerLink="/lancamentos">Voltar para a pesquisa</a>
             </div>
 

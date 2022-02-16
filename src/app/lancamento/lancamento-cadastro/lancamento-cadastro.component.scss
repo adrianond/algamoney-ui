@@ -1,13 +1,4 @@
-.main-container__content {
-    display: grid;
-    /* aqui eu determino é são 3 colunas de tamanhos iguas, cada coluna tem uma fração */
-    grid-template-columns: repeat(2, 1fr);
-    /* espaço entre um elemento interno e outro */
-    grid-gap: 10px;
-    width: 300px;
-  }
-  
-  .main-container__content-grid {
+  .main-container__content-grid-column {
     display: grid;
     column-gap: 5px;
     grid-template-columns: repeat(2, 0.2fr);
@@ -15,8 +6,17 @@
        display: block;
     }
   }
+
+  .main-container__content-grid-column-desc {
+    display: grid;
+    column-gap: 5px;
+    grid-template-columns: 80% 20%;
+    @media (max-width: 1050px) {
+       display: block;
+    }
+  }
   
-  .main-container__content-grid-child {
+  .main-container__content-grid {
     display: grid;
   }
   
