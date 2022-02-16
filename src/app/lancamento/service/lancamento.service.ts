@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Lancamento, LancamentoCadastro } from '../model/lancamento';
+import { Lancamento } from '../model/lancamento';
 import { LancamentoFiltro } from '../model/lancamentoFiltro';
 import { LancamentosResponse } from '../model/response/lancamentosResponse';
 import { DatePipe } from '@angular/common';
@@ -10,9 +10,9 @@ import { DatePipe } from '@angular/common';
 	providedIn: 'root'
 })
 export class LancamentoService {
- 	baseUrl = 'http://localhost:8080/api/entries';
+	baseUrl = 'http://localhost:8080/api/entries';
 
-	constructor(protected http: HttpClient, private datePipe: DatePipe) {}
+	constructor(protected http: HttpClient, private datePipe: DatePipe) { }
 
 	public getLancamentos<T>(): Observable<LancamentosResponse> {
 		return this.http.get<LancamentosResponse>(this.baseUrl);
@@ -43,7 +43,11 @@ export class LancamentoService {
 		return this.http.delete<T>(`${this.baseUrl}/entry/${id}`);
 	}
 
-	salvar(lancamento: LancamentoCadastro) {
-		return this.http.post<LancamentoCadastro>(this.baseUrl,  lancamento  );	
-	  }
+	salvar(lancamento: Lancamento) {
+		return this.http.post<Lancamento>(this.baseUrl, lancamento);
+	}
+
+	atualizar(lancamento: Lancamento) {
+		return this.http.put<Lancamento>(`${this.baseUrl}/entry/${lancamento.id}`, lancamento);
+	}
 }

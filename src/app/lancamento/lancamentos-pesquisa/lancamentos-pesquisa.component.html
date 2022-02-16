@@ -7,7 +7,7 @@
 
             <div class="p-col-12 p-fluid">
                 <label>Descrição</label>
-                <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
+                <input upperCaseNoCharacters pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao">
             </div>
 
             <div class="p-col-12">
@@ -60,14 +60,14 @@
                             </td>
                             <td class="main-container__col-data">
                                 <span class="p-column-title">Pagamento</span>
-                                {{ lancamento.dataPagamento }}
+                                {{ lancamento.dataRecebimentoPagamento }}
                             </td>
                             <td class="main-container__col-data" [style.color]="lancamento.tipo === 'DESPESA' ? 'red' : 'blue'">
                                 <span class="p-column-title">Valor</span>
                                 {{ lancamento.valor | currency : 'BRL'}}
                             </td>
                            <td class="main-container__col-acoes">
-                                <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+                                <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" (click)="editar(lancamento)"></a>
                                 <button pButton icon="pi pi-trash" (click)="confirmarExclusao(lancamento)" pTooltip="Excluir" tooltipPosition="top"></button> 
                             </td>
                         </tr>
@@ -83,7 +83,7 @@
                 </p-table>
                 </div>
             </div>
-            <a style="margin-top: 5px;" pButton label="Novo Lançamento"></a>
+            <a style="margin-top: 5px; text-decoration: none;" routerLink="/lancamentos/novo" pButton label="Novo Lançamento"></a>
         </div>
     </form>
 </div>

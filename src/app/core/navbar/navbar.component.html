@@ -9,8 +9,8 @@
     </div>
   <ul class="navbar__menu" [hidden]="!exibindoMenu">
     <li class="navbar__menu__usuario">José da Silva</li>
-    <li class="navbar__menu__menuitem"><a href="#">Lançamentos</a></li>
-    <li class="navbar__menu__menuitem"><a href="#">Pessoas</a></li>
+    <li class="navbar__menu__menuitem" routerLinkActive="navbar__menu__menuitem--ativo"><a routerLink="/lancamentos">Lançamentos</a></li>
+    <li class="navbar__menu__menuitem" routerLinkActive="navbar__menu__menuitem--ativo"><a routerLink="/pessoas">Pessoas</a></li>
     <li class="navbar__menu__menuitem"><a href="#">Logout</a></li>
   </ul>
 </div>

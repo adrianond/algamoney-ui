@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageModule } from 'primeng/message';
 import { SharedModule } from '../shared/shared.module';
 import { TooltipModule } from 'primeng/tooltip';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { TooltipModule } from 'primeng/tooltip';
 		BrowserAnimationsModule,
     MessageModule,
     SharedModule,
-    TooltipModule
+    TooltipModule,
+    RouterModule
   ],
   exports: [
     LancamentoCadastroComponent,

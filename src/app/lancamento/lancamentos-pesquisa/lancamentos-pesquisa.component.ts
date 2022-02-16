@@ -6,6 +6,7 @@ import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api'
 import { LancamentoFiltro } from '../model/lancamentoFiltro';
 import { Table } from 'primeng/table';
 import { ErrorHanderService } from 'src/app/core/error-handler-service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-lancamentos-pesquisa',
@@ -13,7 +14,7 @@ import { ErrorHanderService } from 'src/app/core/error-handler-service';
 	styleUrls: ['./lancamentos-pesquisa.component.scss']
 })
 export class LancamentosPesquisaComponent implements OnInit {
-	lancamentos: Lancamento[] = [];
+	lancamentos: any[] = [];
 	filtro = new LancamentoFiltro();
 	totalRegistros: number = 0
 	@ViewChild('tabela') grid!: Table;
@@ -22,7 +23,8 @@ export class LancamentosPesquisaComponent implements OnInit {
 		private service: LancamentoService,
 		private messageService: MessageService,
 		private confirmationService: ConfirmationService,
-		private errorHanderService: ErrorHanderService
+		private errorHanderService: ErrorHanderService,
+		private router: Router,
 	) { }
 
 	ngOnInit(): void {
@@ -79,5 +81,14 @@ export class LancamentosPesquisaComponent implements OnInit {
 				this.errorHanderService.handle(err);
 			}
 		);
+	}
+
+	editar(lancamento: Lancamento) {
+		this.router.navigateByUrl('/lancamentos/novo', {
+          state : {
+			  lancamento: lancamento,
+			  atualizar: true
+		  }
+		});
 	}
 }

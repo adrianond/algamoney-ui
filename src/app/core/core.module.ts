@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule, LOCALE_ID  } from '@angular/core';
 import { CommonModule,  DatePipe, registerLocaleData } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -19,7 +20,8 @@ registerLocaleData(localePt, 'pt-BR');
     LancamentoModule,
     PessoaModule,
     ToastModule,
-		ConfirmDialogModule
+		ConfirmDialogModule,
+    RouterModule
   ],
   exports: [
     NavbarComponent,

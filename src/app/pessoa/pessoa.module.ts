@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -29,6 +30,7 @@ import { SharedModule } from '../shared/shared.module';
     TableModule,
     SharedModule,
     InputNumberModule,
+    RouterModule,
     NgxMaskModule.forRoot()
   ],
 

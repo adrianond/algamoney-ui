@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { ErrorHanderService } from 'src/app/core/error-handler-service';
 import { Categoria } from '../model/categoria';
 import { CategoriaService } from './../../shared/service/categoria.service';
-import { LancamentoCadastro } from '../model/lancamento';
+import { Lancamento } from '../model/lancamento';
 import { NgForm } from '@angular/forms';
 import { ddMMyyyy } from 'src/app/shared/utils/date-utils';
 import { LancamentoService } from '../service/lancamento.service';
 import { MessageService } from 'primeng/api';
 import { Pessoa } from 'src/app/pessoa/model/model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -20,7 +21,8 @@ export class LancamentoCadastroComponent implements OnInit {
   categoriaSelecionada!: Categoria;
   categorias: Categoria[] = [];
   pessoas: Pessoa[] = [];
-  lancamento: LancamentoCadastro = new LancamentoCadastro();
+  lancamento: Lancamento = new Lancamento();
+  state: any;
 
   tipos = [
     { label: 'Receita', value: 'RECEITA' },
@@ -32,12 +34,21 @@ export class LancamentoCadastroComponent implements OnInit {
     private pessoaService: PessoaService,
     private errorHanderService: ErrorHanderService,
     private lancamentoService: LancamentoService,
-    private messageService: MessageService
-  ) { }
+    private messageService: MessageService,
+    private router: Router
+  ) {
+    this.state = this.router.getCurrentNavigation()?.extras?.state;
+  }
 
   ngOnInit(): void {
     this.consultarCategorias();
     this.consultarPessoas();
+    this.lancamento.tipo = this.tipos[0].value;
+    if (this.state?.lancamento) {
+      this.lancamento = this.state?.lancamento;
+      this.lancamento.idCategoria = this.state?.lancamento?.categoria.id;
+      this.lancamento.idPessoa = this.state?.lancamento?.pessoa.id;
+    }
   }
 
   private consultarCategorias() {
@@ -57,9 +68,28 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   onSubmit(lancamentoCadastroForm: NgForm) {
-    //this.lancamento = lancamentoCadastroForm.value;
+    if (this.state?.atualizar)
+      this.atualizar(lancamentoCadastroForm);
+    else
+      this.salvar(lancamentoCadastroForm);
+  }
+
+  atualizar(lancamentoCadastroForm: NgForm) {
+    this.lancamento.dataVencimento = this.lancamento.dataVencimento.replace(/[//"]/g, '-');
+    this.lancamento.dataRecebimentoPagamento = this.lancamento.dataRecebimentoPagamento.replace(/[//"]/g, '-');
+
+    this.lancamentoService.atualizar(this.lancamento).subscribe(response => {
+      this.messageService.add({ severity: 'success', detail: 'Lançamento alterado com sucesso.' })
+      lancamentoCadastroForm.resetForm();
+    }, (err) => {
+      this.errorHanderService.handle(err);
+    })
+  }
+
+  salvar(lancamentoCadastroForm: NgForm) {
     this.lancamento.dataVencimento = ddMMyyyy(lancamentoCadastroForm.value.dataVencimento);
     this.lancamento.dataRecebimentoPagamento = ddMMyyyy(lancamentoCadastroForm.value.dataRecebimentoPagamento);
+
     this.lancamentoService.salvar(this.lancamento).subscribe(response => {
       this.messageService.add({ severity: 'success', detail: 'Lançamento cadastrado com sucesso.' })
       lancamentoCadastroForm.resetForm();
@@ -67,5 +97,4 @@ export class LancamentoCadastroComponent implements OnInit {
       this.errorHanderService.handle(err);
     })
   }
-
 }
