@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { PessoaService } from './../service/pessoa.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -17,10 +18,14 @@ export class PessoaCadastroComponent implements OnInit {
 
 
   constructor(private service: PessoaService,
-    private errorHanderService: ErrorHanderService,
-    private messageService: MessageService) { }
+      private errorHanderService: ErrorHanderService,
+      private messageService: MessageService,
+      private title: Title
+    ) 
+    { }
 
   ngOnInit(): void {
+    this.title.setTitle('Cadastro de pessoa');
   }
 
   onSubmit(pessoaCadastroForm: NgForm) {

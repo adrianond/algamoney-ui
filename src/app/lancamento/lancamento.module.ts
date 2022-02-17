@@ -1,3 +1,4 @@
+import { LancamentoRoutingModule } from './lancamento-routing.module';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,12 +13,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { TableModule } from 'primeng/table';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageModule } from 'primeng/message';
 import { SharedModule } from '../shared/shared.module';
 import { TooltipModule } from 'primeng/tooltip';
-import { RouterModule } from '@angular/router';
-
 
 @NgModule({
   declarations: [
@@ -35,15 +33,12 @@ import { RouterModule } from '@angular/router';
     InputTextareaModule,
     ButtonModule,
     TableModule,
-		BrowserAnimationsModule,
     MessageModule,
     SharedModule,
     TooltipModule,
-    RouterModule
+    LancamentoRoutingModule
   ],
   exports: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent
   ]
 })
 export class LancamentoModule { }

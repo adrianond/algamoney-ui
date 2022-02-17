@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { PessoaService } from './../../pessoa/service/pessoa.service';
 import { Component, OnInit } from '@angular/core';
 import { ErrorHanderService } from 'src/app/core/error-handler-service';
@@ -35,12 +36,18 @@ export class LancamentoCadastroComponent implements OnInit {
     private errorHanderService: ErrorHanderService,
     private lancamentoService: LancamentoService,
     private messageService: MessageService,
+    private title: Title,
     private router: Router
   ) {
     this.state = this.router.getCurrentNavigation()?.extras?.state;
   }
 
   ngOnInit(): void {
+    if (this.state?.atualizar)
+      this.title.setTitle('Alteração de lançamento');
+    else   
+      this.title.setTitle('Cadastro de lançamento');
+
     this.consultarCategorias();
     this.consultarPessoas();
     this.lancamento.tipo = this.tipos[0].value;
@@ -80,7 +87,7 @@ export class LancamentoCadastroComponent implements OnInit {
 
     this.lancamentoService.atualizar(this.lancamento).subscribe(response => {
       this.messageService.add({ severity: 'success', detail: 'Lançamento alterado com sucesso.' })
-      lancamentoCadastroForm.resetForm();
+      this.router.navigateByUrl('/lancamentos');
     }, (err) => {
       this.errorHanderService.handle(err);
     })
@@ -92,9 +99,16 @@ export class LancamentoCadastroComponent implements OnInit {
 
     this.lancamentoService.salvar(this.lancamento).subscribe(response => {
       this.messageService.add({ severity: 'success', detail: 'Lançamento cadastrado com sucesso.' })
-      lancamentoCadastroForm.resetForm();
+      this.router.navigateByUrl('/lancamentos');
+
     }, (err) => {
       this.errorHanderService.handle(err);
     })
+  }
+
+  novo(lancamentoCadastroForm: NgForm) {
+    lancamentoCadastroForm.reset();
+    this.state.atualizar = false;
+    this.lancamento.tipo = this.tipos[0].value;
   }
 }

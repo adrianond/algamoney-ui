@@ -8,6 +8,7 @@ import { PessoaModule } from '../pessoa/pessoa.module';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ErrorHanderService } from './error-handler-service';
+import { Title } from '@angular/platform-browser';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -25,14 +26,13 @@ registerLocaleData(localePt, 'pt-BR');
   ],
   exports: [
     NavbarComponent,
-    LancamentoModule,
-		PessoaModule,
     ToastModule,
 		ConfirmDialogModule
   ],
   providers: [
     DatePipe,
     ErrorHanderService,
+    Title
     //{provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })

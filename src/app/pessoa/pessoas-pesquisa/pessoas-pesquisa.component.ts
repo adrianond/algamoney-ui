@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { PessoaService } from '../service/pessoa.service';
 import { PessoaFiltro } from '../model/pessoaFiltro';
@@ -14,10 +15,13 @@ export class PessoasPesquisaComponent implements OnInit {
 
 	constructor(
 		private pessoaService: PessoaService,
-		private errorHanderService: ErrorHanderService
+		private errorHanderService: ErrorHanderService,
+		private title: Title
 		) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.title.setTitle('Pesquisa de pessoas');
+	}
 
 	pesquisar(pagina: number = this.pessoaFiltro.page) {
 		this.pessoaFiltro.page = pagina;

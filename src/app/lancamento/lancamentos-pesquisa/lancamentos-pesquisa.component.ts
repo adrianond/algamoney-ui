@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Lancamento } from './../model/lancamento';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LancamentoService } from '../service/lancamento.service';
@@ -24,11 +25,12 @@ export class LancamentosPesquisaComponent implements OnInit {
 		private messageService: MessageService,
 		private confirmationService: ConfirmationService,
 		private errorHanderService: ErrorHanderService,
+		private title: Title,
 		private router: Router,
 	) { }
 
 	ngOnInit(): void {
-		//this.pesquisar();
+		this.title.setTitle('Pesquisa de lançamentos')
 	}
 
 	pesquisarComPaginacao(pagina: number = this.filtro.page): void {

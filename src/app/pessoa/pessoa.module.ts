@@ -1,4 +1,3 @@
-import { RouterModule } from '@angular/router';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,11 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { PessoasGridComponent } from '../pessoa/pessoas-grid/pessoas-grid.component';
-import {TooltipModule} from 'primeng/tooltip';
+import { TooltipModule } from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
 import { PessoasPesquisaComponent } from '../pessoa/pessoas-pesquisa/pessoas-pesquisa.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { SharedModule } from '../shared/shared.module';
+import { PessoaRoutingModule } from './pessoa-routing.module';
 
 
 @NgModule({
@@ -30,13 +30,11 @@ import { SharedModule } from '../shared/shared.module';
     TableModule,
     SharedModule,
     InputNumberModule,
-    RouterModule,
+    PessoaRoutingModule,
     NgxMaskModule.forRoot()
   ],
 
   exports: [
-    PessoaCadastroComponent,
-    PessoasPesquisaComponent
   ]
 })
 export class PessoaModule { }
