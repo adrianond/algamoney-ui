@@ -91,4 +91,17 @@ h1 {
     height: 30px !important;
   }
 
+  .p-dialog .p-dialog-footer {
+      text-align: center;
+      margin-top: 0px;
+  }
+
+  .p-dialog {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+  .p-confirm-dialog .p-dialog-content {
+    margin-top: 0px;
+  }
+
 
