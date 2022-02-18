@@ -29,8 +29,15 @@
                     : 'Inativo' }}</a>
             </td>
             <td class="main-container__col-acoes">
-                <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+                <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" (click)="editar(pessoa)"></a>
                 <button pButton icon="pi pi-trash" (click)="confirmarExclusao(pessoa)" pTooltip="Excluir" tooltipPosition="top"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template ngIf*="pessoas.length == 0" ng pTemplate="emptymessage">
+        <tr>
+            <td colspan="6">
+                Nenhuma pessoa encontrada
             </td>
         </tr>
     </ng-template>

@@ -76,12 +76,12 @@ export class LancamentoCadastroComponent implements OnInit {
 
   onSubmit(lancamentoCadastroForm: NgForm) {
     if (this.state?.atualizar)
-      this.atualizar(lancamentoCadastroForm);
+      this.atualizar();
     else
       this.salvar(lancamentoCadastroForm);
   }
 
-  atualizar(lancamentoCadastroForm: NgForm) {
+  atualizar() {
     this.lancamento.dataVencimento = this.lancamento.dataVencimento.replace(/[//]/g, '-')
     this.lancamento.dataRecebimentoPagamento = this.lancamento.dataRecebimentoPagamento.replace(/[//"]/g, '-');
 
@@ -99,7 +99,7 @@ export class LancamentoCadastroComponent implements OnInit {
 
     this.lancamentoService.salvar(this.lancamento).subscribe(response => {
       this.messageService.add({ severity: 'success', detail: 'Lançamento cadastrado com sucesso.' })
-      this.router.navigateByUrl('/lancamentos');
+      this.router.navigateByUrl('/lancamentos/consulta');
 
     }, (err) => {
       this.errorHanderService.handle(err);

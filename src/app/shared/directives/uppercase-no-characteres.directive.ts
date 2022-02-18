@@ -33,9 +33,8 @@ export class UpperCaseNoCharactersDirective {
       this.propagateChange(null);
       this.renderer.setProperty(this.elementRef.nativeElement, 'value', '');
     } else {
-      const valueChanged = this.upperCase(value);
-      this.propagateChange(valueChanged);
-      this.renderer.setProperty(this.elementRef.nativeElement, 'value', valueChanged);
+      this.propagateChange(value);
+      this.renderer.setProperty(this.elementRef.nativeElement, 'value', value);
     }
   } 
 

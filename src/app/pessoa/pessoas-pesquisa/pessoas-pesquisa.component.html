@@ -1,12 +1,12 @@
 <div class="main-container">
-    <form autocomplete="off" (ngSubmit)="pesquisar()">
+    <form #pessoaPesquisaForm="ngForm" autocomplete="off" (ngSubmit)="pesquisar()">
         <div class="p-grid">
             <div class="p-col-12">
                 <h1>Pessoas</h1>
             </div>
             <div class="p-col-12 p-fluid">
                 <label>Nome</label>
-                <input upperCaseNoCharacters pInputText type="text">
+                <input upperCaseNoCharacters pInputText type="text" name="nome" [(ngModel)]="pessoaFiltro.nome">
             </div>
             <div class="p-col-12">
                 <button pButton class="button" type="submit" label="Pesquisar"></button>

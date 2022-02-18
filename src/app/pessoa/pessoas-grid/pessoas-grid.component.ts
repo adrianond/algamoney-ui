@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
@@ -22,6 +23,7 @@ export class PessoasGridComponent implements OnInit {
 		private service: PessoaService,
 		private messageService: MessageService,
 		private errorHanderService: ErrorHanderService,
+		private router: Router
 	) { }
 
 	ngOnInit(): void {
@@ -40,7 +42,7 @@ export class PessoasGridComponent implements OnInit {
 	excluir(pessoa: Pessoa) {
 		this.service.excluir(pessoa.id).subscribe(() => {
 			this.grid.reset();
-			this.messageService.add({ severity: 'success', detail: 'Lançamento excluído com sucesso!' })
+			this.messageService.add({ severity: 'success', detail: 'Pessoa excluída com sucesso!' })
 		},
 			(err) => {
 				this.errorHanderService.handle(err)
@@ -68,4 +70,12 @@ export class PessoasGridComponent implements OnInit {
 		)
 	}
 
+	editar(pessoa: Pessoa) {
+		this.router.navigateByUrl('/pessoas/nova', {
+			state : {
+				pessoa: pessoa,
+				atualizar: true
+			}
+		  });
+	}
 }

@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { PessoaService } from '../service/pessoa.service';
