@@ -87,7 +87,7 @@ export class LancamentoCadastroComponent implements OnInit {
 
     this.lancamentoService.atualizar(this.lancamento).subscribe(response => {
       this.messageService.add({ severity: 'success', detail: 'Lançamento alterado com sucesso.' })
-      this.router.navigateByUrl('/lancamentos');
+      this.router.navigateByUrl('/lancamentos/consulta');
     }, (err) => {
       this.errorHanderService.handle(err);
     })
@@ -107,8 +107,8 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   novo(lancamentoCadastroForm: NgForm) {
-    lancamentoCadastroForm.reset();
-    this.state.atualizar = false;
+    this.lancamento = new Lancamento();
     this.lancamento.tipo = this.tipos[0].value;
+    this.state.atualizar = false;
   }
 }

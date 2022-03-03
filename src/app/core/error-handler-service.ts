@@ -10,7 +10,8 @@ export class ErrorHanderService {
   constructor(private messageService: MessageService) { }
 
   handle(errorResponse: any) {
-    let statusCode = errorResponse.error?.httpStatusCode;
+    console.log(errorResponse)
+    let statusCode = errorResponse.error?.status;
     switch (statusCode) {
       case 400:
         this.messageService.add({ severity: 'error', detail: 'Sem autorização' })
@@ -27,7 +28,11 @@ export class ErrorHanderService {
       case 406:
         break;
       case 500:
-        this.messageService.add({ severity: 'error', detail: 'Falha na comunicação, verifique sua conexão.' })
+        if (errorResponse.error.message === 'Usuário não autenticado') {
+          this.messageService.add({ severity: 'error', detail: 'Usuário não autenticado.' })
+        } else {
+          this.messageService.add({ severity: 'error', detail: 'Falha na comunicação, verifique sua conexão.' })
+        }
         break;
       case 502:
         this.messageService.add({ severity: 'error', detail: 'Falha na comunicação, verifique sua conexão.' })
@@ -38,7 +43,7 @@ export class ErrorHanderService {
       default:
         this.messageService.add({ severity: 'error', detail: 'Falha na comunicação, verifique sua conexão.' })
         break;
-      } 
+    }
   }
 
 

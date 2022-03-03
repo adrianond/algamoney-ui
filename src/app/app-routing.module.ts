@@ -6,8 +6,12 @@ import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.compo
 const routes: Routes = [
 	{
 		path: '',
-		loadChildren: () => import('./lancamento/lancamento.module').then((m) => m.LancamentoModule),
+		loadChildren: () => import('./seguranca/seguranca.module').then((m) => m.SegurancaModule),
 	},
+	 {
+	 	path: 'lancamentos',
+	 	loadChildren: () => import('./lancamento/lancamento.module').then((m) => m.LancamentoModule),
+	 },
 	{
 		path: 'pessoas',
 		loadChildren: () => import('./pessoa/pessoa.module').then((m) => m.PessoaModule),

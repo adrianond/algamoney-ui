@@ -5,9 +5,8 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'lancamentos/consulta', pathMatch: 'full' },
-	{ path: 'lancamentos/consulta', component: LancamentosPesquisaComponent },
-	{ path: 'lancamentos/novo', component: LancamentoCadastroComponent }
+	{ path: 'consulta', component: LancamentosPesquisaComponent },
+	{ path: 'novo', component: LancamentoCadastroComponent }
 ];
 
 @NgModule({
