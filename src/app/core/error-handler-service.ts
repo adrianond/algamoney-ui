@@ -10,14 +10,13 @@ export class ErrorHanderService {
   constructor(private messageService: MessageService) { }
 
   handle(errorResponse: any) {
-    console.log(errorResponse)
-    let statusCode = errorResponse.error?.status;
+    let statusCode = errorResponse?.status ? errorResponse?.status : errorResponse.error?.status;
     switch (statusCode) {
       case 400:
-        this.messageService.add({ severity: 'error', detail: 'Sem autorização' })
+        this.messageService.add({ severity: 'error', detail: 'Bad request' })
         break;
       case 401:
-        this.messageService.add({ severity: 'error', detail: 'Sem autorização' })
+        this.messageService.add({ severity: 'error', detail: 'Usuário não autenticado' })
         break;
       case 403:
         this.messageService.add({ severity: 'error', detail: 'Sem autorização' })
