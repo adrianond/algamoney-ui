@@ -2,7 +2,6 @@ import { Title } from '@angular/platform-browser';
 import { Lancamento } from './../model/lancamento';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LancamentoService } from '../service/lancamento.service';
-import { finalize } from 'rxjs/operators';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { LancamentoFiltro } from '../model/lancamentoFiltro';
 import { Table } from 'primeng/table';
@@ -85,7 +84,7 @@ export class LancamentosPesquisaComponent implements OnInit {
 		);
 	}
 
-	editar(lancamento: Lancamento) {
+	editar(lancamento: any) {
 		this.router.navigateByUrl('/lancamentos/novo', {
           state : {
 			  lancamento: lancamento,

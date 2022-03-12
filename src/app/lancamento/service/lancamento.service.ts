@@ -1,11 +1,10 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, throwError as observableThrowError } from 'rxjs';
 import { Lancamento } from '../model/lancamento';
 import { LancamentoFiltro } from '../model/lancamentoFiltro';
 import { LancamentosResponse } from '../model/response/lancamentosResponse';
 import { DatePipe } from '@angular/common';
-import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root'
@@ -33,9 +32,7 @@ export class LancamentoService {
 		if (filtro.dataVencimentoFim)
 			params = params.set('dataVencimentoAte', this.datePipe.transform(filtro.dataVencimentoFim, 'yyyy-MM-dd')!);
 
-		//return this.http.get<LancamentosResponse>(`${this.baseUrl}/paginated/v1`, { params });
-
-		return this.intercept(this.http.get<LancamentosResponse>(`${this.baseUrl}/paginated/v1`, { params }));
+		return this.http.get<T>(`${this.baseUrl}/paginated/v1`, { params });
 	}
 
 	public getLancamento(id: number) {
@@ -53,29 +50,6 @@ export class LancamentoService {
 	atualizar(lancamento: Lancamento) {
 		return this.http.put<Lancamento>(`${this.baseUrl}/entry/${lancamento.id}`, lancamento);
 	}
-
-	intercept(observable: Observable<any>): Observable<any> {
-		return observable.pipe(
-		  map(res => {
-			if (res && res._body) {
-			  return res.json();
-			}
-			return res;
-		  }),
-		  catchError((error, source) => {
-			if (error && error.status && error.status === 401) {
-			 console.log('deu ruim!')
-			  return EMPTY;
-			}
-	
-			if (error.text && error.text()) {
-			  error.error = error.json();
-			  return observableThrowError(error);
-			}
-			return observableThrowError(error);
-		  })
-		);
-	  }
 }
 
 

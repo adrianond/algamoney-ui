@@ -8,8 +8,7 @@ import { PessoaModule } from '../pessoa/pessoa.module';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ErrorHanderService } from './error-handler-service';
-import { Title } from '@angular/platform-browser';
-import { AuthService } from '../seguranca/auth.service';
+//import { JwtHelper } from 'angular2-jwt';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -33,9 +32,6 @@ registerLocaleData(localePt, 'pt-BR');
   providers: [
     DatePipe,
     ErrorHanderService,
-    Title,
-    AuthService
-    //{provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
 export class CoreModule { }

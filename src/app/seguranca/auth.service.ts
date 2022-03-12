@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -9,7 +10,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login<T>(usuario: string, senha: string) {
+  login<T>(usuario: string, senha: string):Observable<any> {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/x-www-form-urlencoded')
       //username e password em base 64

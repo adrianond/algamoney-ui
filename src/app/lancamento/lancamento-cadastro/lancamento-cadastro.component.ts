@@ -53,8 +53,8 @@ export class LancamentoCadastroComponent implements OnInit {
     this.lancamento.tipo = this.tipos[0].value;
     if (this.state?.lancamento) {
       this.lancamento = this.state?.lancamento;
-      this.lancamento.idCategoria = this.state?.lancamento?.categoria.id;
-      this.lancamento.idPessoa = this.state?.lancamento?.pessoa.id;
+       this.lancamento.idCategoria = this.state?.lancamento?.categoria.id;
+       this.lancamento.idPessoa = this.state?.lancamento?.pessoa.id; 
     }
   }
 
