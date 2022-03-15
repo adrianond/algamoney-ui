@@ -1,13 +1,19 @@
-import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Inject, Renderer2 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Directive({
   selector: '[upperCaseNoCharacters]',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: UpperCaseNoCharactersDirective,
+      multi: true,
+    },
+  ],
 })
 export class UpperCaseNoCharactersDirective {
 
-  constructor(private elementRef: ElementRef,
-    private renderer: Renderer2) { }
+  constructor(@Inject(Renderer2) private renderer: Renderer2, @Inject(ElementRef) private elementRef: ElementRef) { }
 
   protected upperCase(val: any): string {
     const valueChanged = this.upper(val);
@@ -22,22 +28,31 @@ export class UpperCaseNoCharactersDirective {
       .replace(new RegExp(/[^A-Z0-9 ]/, 'g'), '');
   }
 
-  public onTouched: any = () => { };
-  registerOnTouched(fn: any) {
-    this.onTouched = fn;
-  }
-
-   @HostListener('input', ['$event']) onInput($event: any) {
-    const value = this.upperCase($event.target.value);
+  writeValue(value: any) {
     if (value === undefined || value === null) {
       this.propagateChange(null);
       this.renderer.setProperty(this.elementRef.nativeElement, 'value', '');
     } else {
-      this.propagateChange(value);
-      this.renderer.setProperty(this.elementRef.nativeElement, 'value', value);
+      const valueChanged = this.upperCase(value);
+      this.propagateChange(valueChanged);
+      this.renderer.setProperty(this.elementRef.nativeElement, 'value', valueChanged);
     }
-  } 
+  }
+ 
+  propagateChange = (_: any) => {};
+  registerOnChange(fn: any) {
+    this.propagateChange = fn;
+  }
+ 
+  public onTouched: any = () => {};
+  registerOnTouched(fn: any) {
+    this.onTouched = fn;
+  }
 
+  @HostListener('input', ['$event']) onInput($event: any) {
+    $event.target.value = this.upperCase($event.target.value);
+    this.propagateChange($event.target.value);
+  }
 
   protected upper(val: any): string {
     if (isNaN(val)) {
@@ -47,11 +62,6 @@ export class UpperCaseNoCharactersDirective {
         .replace('  ', ' ');
     }
     return val || '';
-  }
-
-  propagateChange = (_: any) => { };
-  registerOnChange(fn: any) {
-    this.propagateChange = fn;
   }
 
    @HostListener('blur') onBlur() {

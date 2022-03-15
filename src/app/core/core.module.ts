@@ -8,7 +8,6 @@ import { PessoaModule } from '../pessoa/pessoa.module';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ErrorHanderService } from './error-handler-service';
-//import { JwtHelper } from 'angular2-jwt';
 
 registerLocaleData(localePt, 'pt-BR');
 

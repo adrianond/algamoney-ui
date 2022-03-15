@@ -13,7 +13,7 @@ export class ErrorHanderService {
     let statusCode = errorResponse?.status ? errorResponse?.status : errorResponse.error?.status;
 
     if (statusCode >= 400 && statusCode <= 499) {
-      if (errorResponse.error === 'invalid_grant') {
+      if (errorResponse.error.error === 'invalid_grant') {
         this.messageService.add({ severity: 'error', detail: 'Usuário ou senha inválida.' })
       } else {
         this.messageService.add({ severity: 'error', detail: 'Ocorreu um erro ao processar a solicitação, tente novamente.' })
