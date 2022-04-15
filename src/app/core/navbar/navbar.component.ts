@@ -1,5 +1,6 @@
 import { AuthService } from './../../seguranca/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-navbar',
@@ -9,20 +10,19 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   exibindoMenu: boolean = false;
   usuarioLogado: string = '';
+  jwtPayload: any;
 
 
-  constructor(private auth: AuthService) {}
-  
+  constructor(private jwtHelper: JwtHelperService, private authService: AuthService) { }
+
   ngOnInit(): void {
-    this.usuarioLogado = this.auth?.jwtPayload.nome;
+    const token = this.authService.getToken();
+    this.jwtPayload = this.jwtHelper.decodeToken(token!);
+    this.usuarioLogado = this.jwtPayload.nome;
   }
 
   public temPermissao(permissao: string) {
-    return this.auth.jwtPayload && this.auth.jwtPayload.authorities.includes(permissao);
-}
+    return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
+  }
 
-gerarNovoAccesToken() {
-  this.auth.gerarNovoAccessToken();
-}
-  
 }

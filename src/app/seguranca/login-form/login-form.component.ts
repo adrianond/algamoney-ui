@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
-// import { JwtHelperService } from '@auth0/angular-jwt';
 import { ErrorHanderService } from 'src/app/core/error-handler-service';
 import { AuthService } from '../auth.service';
 
@@ -17,13 +15,23 @@ export class LoginFormComponent implements OnInit {
     private service: AuthService,
     private router: Router,
     private errorHanderService: ErrorHanderService,
-    private jwtHelper: JwtHelperService
   ) {}
 
   ngOnInit(): void {
   }
 
   login(usuario: string, senha: string) {
-    this.service.login(usuario, senha) 
+    this.service.login(usuario, senha)
+    .subscribe(response => {
+      this.armazenarToken(response['access_token']);
+      this.router.navigateByUrl('/lancamentos/consulta');
+      
+    }, (err => {
+      this.errorHanderService.handle(err);
+    })) 
   }
+
+   public armazenarToken(token: string) {
+    localStorage.setItem('token', token);
+  } 
 }

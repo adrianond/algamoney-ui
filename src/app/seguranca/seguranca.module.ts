@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -15,6 +16,9 @@ import { ButtonModule } from 'primeng/button';
     InputTextModule,
     ButtonModule,
     SegurancaRoutingModule
+  ], 
+  providers: [
+    AuthGuard
   ]
 })
 export class SegurancaModule { }

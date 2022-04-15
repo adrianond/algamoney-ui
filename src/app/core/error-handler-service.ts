@@ -10,20 +10,20 @@ export class ErrorHanderService {
   constructor(private messageService: MessageService) { }
 
   handle(errorResponse: any) {
-    let statusCode = errorResponse?.status ? errorResponse?.status : errorResponse.error?.status;
+    let statusCode = errorResponse?.error?.httpStatusCode ? errorResponse.error.httpStatusCode : errorResponse?.status;
 
-    if (statusCode >= 400 && statusCode <= 499) {
-      if (errorResponse.error.error === 'invalid_grant') {
-        this.messageService.add({ severity: 'error', detail: 'Usuário ou senha inválida.' })
-      } else {
-        this.messageService.add({ severity: 'error', detail: 'Ocorreu um erro ao processar a solicitação, tente novamente.' })
-      }
-    } else {
-      this.messageService.add({ severity: 'error', detail: 'Ocorreu um erro ao processar a solicitação, tente novamente.' })
-    }
+    // if (statusCode >= 400 && statusCode <= 499) {
+    //   if (errorResponse.error.error === 'invalid_grant') {
+    //     this.messageService.add({ severity: 'error', detail: 'Usuário ou senha inválida.' })
+    //   } else {
+    //     this.messageService.add({ severity: 'error', detail: 'Ocorreu um erro ao processar a solicitação, tente novamente.' })
+    //   }
+    // } else {
+    //   this.messageService.add({ severity: 'error', detail: 'Ocorreu um erro ao processar a solicitação, tente novamente.' })
+    // }
 
 
-    /*  switch (statusCode) {
+      switch (statusCode) {
        case 400:
          this.messageService.add({ severity: 'error', detail: 'Ocorreu um erro ao processar a solicitação.' })
          break;
@@ -54,7 +54,7 @@ export class ErrorHanderService {
        default:
          this.messageService.add({ severity: 'error', detail: 'Falha na comunicação, verifique sua conexão.' })
          break;
-     } */
+     } 
   }
 
 

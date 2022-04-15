@@ -32,7 +32,7 @@ export class LancamentoService {
 		if (filtro.dataVencimentoFim)
 			params = params.set('dataVencimentoAte', this.datePipe.transform(filtro.dataVencimentoFim, 'yyyy-MM-dd')!);
 
-		return this.http.get<T>(`${this.baseUrl}/paginated/v1`, { params });
+		return this.http.get<T>(`api/entries/paginated/v1`, { params });
 	}
 
 	public getLancamento(id: number) {

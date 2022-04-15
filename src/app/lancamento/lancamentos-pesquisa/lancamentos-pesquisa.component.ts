@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { Title } from '@angular/platform-browser';
 import { Lancamento } from './../model/lancamento';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -24,6 +25,7 @@ export class LancamentosPesquisaComponent implements OnInit {
 		private messageService: MessageService,
 		private confirmationService: ConfirmationService,
 		private errorHanderService: ErrorHanderService,
+		private authService: AuthService,
 		private title: Title,
 		private router: Router,
 	) { }
@@ -85,11 +87,16 @@ export class LancamentosPesquisaComponent implements OnInit {
 	}
 
 	editar(lancamento: any) {
-		this.router.navigateByUrl('/lancamentos/novo', {
+		this.router.navigateByUrl('/lancamentos/editar', {
           state : {
 			  lancamento: lancamento,
 			  atualizar: true
 		  }
 		});
 	}
+
+	public temPermissao(permissao: string): boolean {
+      return this.authService.temPermissao(permissao);
+	}
+
 }
