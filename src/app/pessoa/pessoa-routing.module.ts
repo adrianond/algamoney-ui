@@ -6,6 +6,7 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
 import { AuthGuard } from '../seguranca/auth.guard';
 
 const routes: Routes = [
+  {path: '', redirectTo: 'consulta', pathMatch: 'full'},
   { 
     path: 'consulta', 
     component: PessoasPesquisaComponent,

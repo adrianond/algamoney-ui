@@ -36,6 +36,10 @@ export class AuthService {
     return this.http.post<any>(this.oauthTokenUrl, body, { headers, withCredentials: true })
   }
 
+  public logout() {
+    return this.http.delete('http://localhost:8080/api/token/revoke');
+  }
+
   public temPermissao(permissao: string) {
     const token = this.getToken();
     this.jwtPayload = this.jwtHelper.decodeToken(token!);
@@ -50,6 +54,11 @@ export class AuthService {
 
   public getToken() {
     return localStorage.getItem('token');
+  }
+
+  limparAccessToken() {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
   }
 
 }

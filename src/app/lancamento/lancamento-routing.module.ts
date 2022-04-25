@@ -6,6 +6,7 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'consulta', pathMatch: 'full' },
   {
     path: 'consulta',
     component: LancamentosPesquisaComponent,

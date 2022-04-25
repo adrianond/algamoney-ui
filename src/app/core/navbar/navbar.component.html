@@ -11,7 +11,7 @@
     <li class="navbar__menu__usuario">{{ usuarioLogado }}</li> 
     <li class="navbar__menu__menuitem" routerLinkActive="navbar__menu__menuitem--ativo" *ngIf="temPermissao('ROLE_PESQUISAR_LANCAMENTO')"><a routerLink="/lancamentos/consulta">Lançamentos</a></li>
     <li class="navbar__menu__menuitem" routerLinkActive="navbar__menu__menuitem--ativo" *ngIf="temPermissao('ROLE_PESQUISAR_PESSOA')"><a routerLink="/pessoas/consulta">Pessoas</a></li>
-    <li class="navbar__menu__menuitem"><a href="#">Logout</a></li>
+    <li class="navbar__menu__menuitem"><a href="javascript:;" (click)="logout()">Logout</a></li>
   </ul>
 </div>
 </nav>
