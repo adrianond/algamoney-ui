@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-message',
@@ -18,9 +19,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AppMessageComponent implements OnInit {
 
-  @Input() control: any;
-  @Input() error: string ='';
-  @Input() text: string ='';
+  @Input() error: string = '';
+  @Input() control?: AbstractControl | FormControl | null;
+  @Input() text: string = '';
 
   constructor() { }
 
@@ -28,7 +29,7 @@ export class AppMessageComponent implements OnInit {
   }
 
   temErro(): boolean {
-   return this.control.hasError(this.error) && this.control.touched;
+     return this.control ? this.control.hasError(this.error) && this.control.touched : true;
   }
 
 }

@@ -5,7 +5,7 @@ import { ErrorHanderService } from 'src/app/core/error-handler-service';
 import { Categoria } from '../model/categoria';
 import { CategoriaService } from './../../shared/service/categoria.service';
 import { Lancamento } from '../model/lancamento';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ddMMyyyy } from 'src/app/shared/utils/date-utils';
 import { LancamentoService } from '../service/lancamento.service';
 import { MessageService } from 'primeng/api';
@@ -22,8 +22,9 @@ export class LancamentoCadastroComponent implements OnInit {
   categoriaSelecionada!: Categoria;
   categorias: Categoria[] = [];
   pessoas: Pessoa[] = [];
-  lancamento: Lancamento = new Lancamento();
+  lancamento = new Lancamento;
   state: any;
+  formCadastro!: FormGroup;
 
   tipos = [
     { label: 'Receita', value: 'RECEITA' },
@@ -37,25 +38,44 @@ export class LancamentoCadastroComponent implements OnInit {
     private lancamentoService: LancamentoService,
     private messageService: MessageService,
     private title: Title,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {
     this.state = this.router.getCurrentNavigation()?.extras?.state;
   }
 
   ngOnInit(): void {
-    if (this.state?.atualizar)
-      this.title.setTitle('Alteração de lançamento');
-    else   
-      this.title.setTitle('Cadastro de lançamento');
-
+    this.init();
     this.consultarCategorias();
     this.consultarPessoas();
-    this.lancamento.tipo = this.tipos[0].value;
-    if (this.state?.lancamento) {
-      this.lancamento = this.state?.lancamento;
-       this.lancamento.idCategoria = this.state?.lancamento?.categoria.id;
-       this.lancamento.idPessoa = this.state?.lancamento?.pessoa.id; 
+
+    if (this.state?.atualizar) {
+      this.title.setTitle('Alteração de lançamento');
+      if (this.state?.lancamento)
+          this.formCadastro.patchValue(this.state?.lancamento || {});
+    } else {
+      this.title.setTitle('Cadastro de lançamento');
     }
+  }
+
+  private init(): void {
+    this.formCadastro = this.formBuilder.group({
+      id: [],
+      tipo: [this.tipos[0].value, Validators.required],
+      dataVencimento: [null, Validators.required],
+      dataRecebimentoPagamento: [null, Validators.required],
+      descricao: [null, [Validators.required, Validators.minLength(5)]],
+      valor: [null, Validators.required],
+      pessoa: this.formBuilder.group({
+        id: [null, Validators.required],
+        nome: []
+      }),
+      categoria: this.formBuilder.group({
+        id: [null, Validators.required],
+        nome: []
+      }),
+      observacao: []
+    })
   }
 
   private consultarCategorias() {
@@ -74,18 +94,15 @@ export class LancamentoCadastroComponent implements OnInit {
     }));
   }
 
-  onSubmit(lancamentoCadastroForm: NgForm) {
+  onSubmit() {
     if (this.state?.atualizar)
       this.atualizar();
     else
-      this.salvar(lancamentoCadastroForm);
+      this.salvar();
   }
 
   atualizar() {
-    this.lancamento.dataVencimento = this.lancamento.dataVencimento.replace(/[//]/g, '-')
-    this.lancamento.dataRecebimentoPagamento = this.lancamento.dataRecebimentoPagamento.replace(/[//"]/g, '-');
-
-    this.lancamentoService.atualizar(this.lancamento).subscribe(response => {
+    this.lancamentoService.atualizar(this.buildLancamento(true)).subscribe(response => {
       this.messageService.add({ severity: 'success', detail: 'Lançamento alterado com sucesso.' })
       this.router.navigateByUrl('/lancamentos/consulta');
     }, (err) => {
@@ -93,22 +110,62 @@ export class LancamentoCadastroComponent implements OnInit {
     })
   }
 
-  salvar(lancamentoCadastroForm: NgForm) {
-    this.lancamento.dataVencimento = ddMMyyyy(lancamentoCadastroForm.value.dataVencimento);
-    this.lancamento.dataRecebimentoPagamento = ddMMyyyy(lancamentoCadastroForm.value.dataRecebimentoPagamento);
-
-    this.lancamentoService.salvar(this.lancamento).subscribe(response => {
+  salvar() {
+    this.lancamentoService.salvar(this.buildLancamento(false)).subscribe(response => {
       this.messageService.add({ severity: 'success', detail: 'Lançamento cadastrado com sucesso.' })
       this.router.navigateByUrl('/lancamentos/consulta');
-
     }, (err) => {
       this.errorHanderService.handle(err);
     })
   }
 
-  novo(lancamentoCadastroForm: NgForm) {
-    this.lancamento = new Lancamento();
-    this.lancamento.tipo = this.tipos[0].value;
+  private buildLancamento(atualizar: boolean) {
+    Object.assign(this.lancamento, this.formCadastro.value)
+    
+    if (atualizar) {
+      this.lancamento.dataVencimento = this.formCadastro.value.dataVencimento.replace(/[//]/g, '-')
+      this.lancamento.dataRecebimentoPagamento = this.formCadastro.value.dataRecebimentoPagamento.replace(/[//"]/g, '-');
+    } else {
+      this.lancamento.dataVencimento = ddMMyyyy(this.formCadastro.value.dataVencimento);
+      this.lancamento.dataRecebimentoPagamento = ddMMyyyy(this.formCadastro.value.dataRecebimentoPagamento);
+    }
+    this.lancamento.idCategoria = this.formCadastro.value.categoria.id;
+    this.lancamento.idPessoa = this.formCadastro.value.pessoa.id;
+
+    return this.lancamento;
+  }
+
+  novo() {
+    this.formCadastro.reset();
     this.state.atualizar = false;
   }
+
+  get tipo(): AbstractControl {
+    return this.formCadastro.get('tipo')!;
+  }
+
+  get dataVencimento(): AbstractControl {
+    return this.formCadastro.get('dataVencimento')!;
+  }
+
+  get dataRecebimentoPagamento(): AbstractControl {
+    return this.formCadastro.get('dataRecebimentoPagamento')!;
+  }
+
+  get descricao(): AbstractControl {
+    return this.formCadastro.get('descricao')!;
+  }
+
+  get valor(): AbstractControl {
+    return this.formCadastro.get('valor')!;
+  }
+
+  get categoria(): AbstractControl {
+    return this.formCadastro.get('categoria')!;
+  }
+
+  get pessoa(): AbstractControl {
+    return this.formCadastro.get('pessoa')!;
+  }
+
 }

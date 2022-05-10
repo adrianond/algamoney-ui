@@ -3,7 +3,7 @@ import { LancamentoRoutingModule } from './lancamento-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CalendarModule } from 'primeng/calendar';
@@ -25,6 +25,7 @@ import { TooltipModule } from 'primeng/tooltip';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule, 
     DropdownModule,
     CurrencyMaskModule,
     CalendarModule,

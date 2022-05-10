@@ -9,10 +9,10 @@
                 <label>Nome</label>
                 <input pInputText type="text" appInputColorido upperCaseNoCharacters [(ngModel)]="pessoa.nome"
                     name="nome" #nome="ngModel" required minlength="5">
-                    <app-message [control]="nome" error="required" text="Informe o nome"></app-message>
+                   <!--  <app-message [control]="nome" error="required" text="Informe o nome"></app-message>
                     <app-message [control]="nome" error="minlength"
                             text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres">
-                    </app-message>
+                    </app-message> -->
                 </div> 
             
             <div class="main-container__content-grid">
@@ -27,7 +27,7 @@
                         [useGrouping]="false" name="numero" #numero="ngModel">
                     </p-inputNumber>
                 </div>
-                <app-message [control]="numero" error="required" text="Informe o numero"></app-message>
+                <!-- <app-message [control]="numero" error="required" text="Informe o numero"></app-message> -->
             </div>
             
 
@@ -47,8 +47,8 @@
                     <input pInputText type="text" [(ngModel)]="pessoa.endereco.cep" name="cep" #cep="ngModel" required
                         mask="00000-000" maxlength="9">
                 </div>
-                <app-message [control]="bairro" error="required" text="Informe o bairro"></app-message>
-                <app-message [control]="cep" error="required" text="Informe o cep"></app-message>
+                <!-- <app-message [control]="bairro" error="required" text="Informe o bairro"></app-message>
+                <app-message [control]="cep" error="required" text="Informe o cep"></app-message> -->
             </div>  
             
            
@@ -63,8 +63,8 @@
                     <input style="width: 200px;" pInputText type="text" upperCaseNoCharacters [(ngModel)]="pessoa.endereco.estado"
                         name="estado" #estado="ngModel" required>
                 </div>
-                <app-message [control]="cidade" error="required" text="Informe a cidade"></app-message>
-                <app-message [control]="estado" error="required" text="Informe o estado"></app-message>
+               <!--  <app-message [control]="cidade" error="required" text="Informe a cidade"></app-message>
+                <app-message [control]="estado" error="required" text="Informe o estado"></app-message> -->
             </div> 
             
  

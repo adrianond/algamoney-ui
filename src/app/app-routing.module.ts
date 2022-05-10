@@ -7,6 +7,7 @@ import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.compo
 const routes: Routes = [
 	{
 		path: '',
+		// lazy loading -> carregamento tardio dos módulos
 		loadChildren: () => import('./seguranca/seguranca.module').then((m) => m.SegurancaModule),
 	},
 	{
