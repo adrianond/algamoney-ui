@@ -10,15 +10,14 @@ export class Endereco {
   
   export class Pessoa {
     id!: number;
-    codigo?: number;
     nome?: string;
-    endereco = new Endereco();
+    endereco = Endereco;
     ativo = true;
   }
   
   
   export class Telefone {
-	telefoneId = new  TelefoneId();
+	telefoneId = TelefoneId;
 	numero?: string;
 	ramal?: string;
 }

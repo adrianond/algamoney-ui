@@ -1,75 +1,70 @@
 <div class="main-container">
-    <form #pessoaCadastroForm="ngForm" (ngSubmit)="onSubmit(pessoaCadastroForm)">
+    <form [formGroup]="formCadPessoa" (ngSubmit)="onSubmit()">
         <div class="p-grid">
             <div class="p-col-12">
                 <h1>{{ state?.atualizar ? 'Alterar Pessoa' : 'Nova Pessoa' }}</h1>
             </div>
-            
-             <div class="p-col-12 p-fluid">
+
+            <div class="p-col-12 p-fluid">
                 <label>Nome</label>
-                <input pInputText type="text" appInputColorido upperCaseNoCharacters [(ngModel)]="pessoa.nome"
-                    name="nome" #nome="ngModel" required minlength="5">
-                   <!--  <app-message [control]="nome" error="required" text="Informe o nome"></app-message>
-                    <app-message [control]="nome" error="minlength"
-                            text="Mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres">
-                    </app-message> -->
-                </div> 
-            
-            <div class="main-container__content-grid">
+                <input [ngClass]="{ 'is-invalid': submitted && nome.errors }" pInputText type="text" appInputColorido
+                    upperCaseNoCharacters formControlName="nome" placeholder="* Informe o nome">
+                <div class="main-container-errors" *ngIf="submitted && nome.errors?.required">Nome é obrigatório</div>
+                <div class="main-container-errors" *ngIf="submitted && nome.errors?.minlength">Nome deve ter pelo menos 5 caracteres</div>
+            </div>
+
+            <div class="main-container__content-grid" formGroupName="endereco">
                 <div class="main-container__content-grid-child">
                     <label>Logradouro</label>
-                    <input upperCaseNoCharacters pInputText type="text" [(ngModel)]="pessoa.endereco.logradouro"
-                        name="logradouro" #logradouro="ngModel" required>
+                    <input [ngClass]="{ 'is-invalid': submitted && logradouro?.errors }" upperCaseNoCharacters
+                        pInputText type="text" formControlName="logradouro" placeholder="* Informe o logradouro">
+                    <div class="main-container-errors" *ngIf="submitted && logradouro?.errors?.required">Logradouro é obrigatório</div>
                 </div>
                 <div class="main-container__content-grid-child">
                     <label>Número</label>
-                    <p-inputNumber  [(ngModel)]="pessoa.endereco.numero" mode="decimal" inputId="withoutgrouping"
-                        [useGrouping]="false" name="numero" #numero="ngModel">
-                    </p-inputNumber>
+                    <input [ngClass]="{ 'is-invalid': submitted && numero?.errors }"  pInputText type="text" formControlName="numero" placeholder="* Infome o número">
+                    <div class="main-container-errors" *ngIf="submitted && numero.errors?.required">Numero é obrigatório</div>
+   
                 </div>
-                <!-- <app-message [control]="numero" error="required" text="Informe o numero"></app-message> -->
             </div>
-            
 
-            <div class="main-container__content">
+            <div class="main-container__content" formGroupName="endereco">
                 <div class="main-container__content-grid-child">
                     <label>Complemento</label>
-                    <input pInputText type="text" upperCaseNoCharacters name="complemento"
-                        [(ngModel)]="pessoa.endereco.complemento">
+                    <input pInputText type="text" upperCaseNoCharacters formControlName="complemento">
+                    <div [ngStyle]="{'margin-bottom':submitted && (cep.errors || bairro.errors)?'20px':'' }"></div>
                 </div>
                 <div class="main-container__content-grid-child">
                     <label>Bairro</label>
-                    <input pInputText type="text" upperCaseNoCharacters [(ngModel)]="pessoa.endereco.bairro"
-                        name="bairro" #bairro="ngModel" required>
+                    <input [ngClass]="{ 'is-invalid': submitted && bairro.errors }" pInputText type="text"
+                        upperCaseNoCharacters formControlName="bairro" placeholder="* Infome o bairro">
+                    <div class="main-container-errors" *ngIf="submitted && bairro.errors?.required">Bairro é obrigatório</div>
                 </div>
                 <div class="main-container__content-grid-child">
                     <label>CEP</label>
-                    <input pInputText type="text" [(ngModel)]="pessoa.endereco.cep" name="cep" #cep="ngModel" required
-                        mask="00000-000" maxlength="9">
+                    <input [ngClass]="{ 'is-invalid': submitted && cep.errors }" pInputText type="text"
+                        formControlName="cep" mask="00000-000" maxlength="9" placeholder="* Informe o CEP">
+                    <div class="main-container-errors" *ngIf="submitted && cep.errors?.required">Cep é obrigatório</div>
                 </div>
-                <!-- <app-message [control]="bairro" error="required" text="Informe o bairro"></app-message>
-                <app-message [control]="cep" error="required" text="Informe o cep"></app-message> -->
-            </div>  
-            
-           
-            <div class="main-container__content-grid">
+            </div>
+
+            <div class="main-container__content-grid" formGroupName="endereco">
                 <div class="main-container__content-grid-child">
                     <label>Cidade</label>
-                    <input pInputText type="text" upperCaseNoCharacters [(ngModel)]="pessoa.endereco.cidade"
-                        name="cidade" #cidade="ngModel" required>
+                    <input [ngClass]="{ 'is-invalid': submitted && cidade.errors }" pInputText type="text"
+                        upperCaseNoCharacters formControlName="cidade" placeholder="* Informe a cidade">
+                    <div class="main-container-errors" *ngIf="submitted && cidade.errors?.required">Cidade é obrigatório</div>
                 </div>
                 <div class="main-container__content-grid-child">
                     <label>Estado</label>
-                    <input style="width: 200px;" pInputText type="text" upperCaseNoCharacters [(ngModel)]="pessoa.endereco.estado"
-                        name="estado" #estado="ngModel" required>
+                    <input [ngClass]="{ 'is-invalid': submitted && estado.errors }" style="width: 200px;" pInputText
+                        type="text" upperCaseNoCharacters formControlName="estado" placeholder="* Informe o estado">
+                    <div class="main-container-errors" *ngIf="submitted && estado.errors?.required">Estado é obrigatório</div>
                 </div>
-               <!--  <app-message [control]="cidade" error="required" text="Informe a cidade"></app-message>
-                <app-message [control]="estado" error="required" text="Informe o estado"></app-message> -->
-            </div> 
-            
- 
+            </div>
+
             <div class="main-container__content-button">
-                <button pButton type="submit" label="Salvar" [disabled]="!pessoaCadastroForm.valid"></button>
+                <button pButton type="submit" label="Salvar"></button>
                 <a routerLink="/pessoas/consulta">Voltar para a pesquisa</a>
             </div>
         </div>

@@ -57,6 +57,15 @@ h1 {
     }
 }
 
+.is-invalid {
+    border-color: red;
+}
+
+.main-container-errors {
+    color: red;
+    margin-left: 5px;
+}
+
 .main-container__content-button {
     display: flex;
     column-gap: 10px;

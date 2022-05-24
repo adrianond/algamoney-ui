@@ -2,7 +2,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { PessoasGridComponent } from '../pessoa/pessoas-grid/pessoas-grid.component';
@@ -24,6 +24,7 @@ import { PessoaRoutingModule } from './pessoa-routing.module';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     InputTextModule,
     ButtonModule,
     TooltipModule,
