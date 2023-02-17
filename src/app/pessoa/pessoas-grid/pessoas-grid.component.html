@@ -1,44 +1,46 @@
-<p-table [value]="resultado?.pessoas" [paginator]="true" [rows]="filtro.size" [lazy]="true" [totalRecords]="resultado?.totalRegistros"
-(onLazyLoad)="aoMudarPagina($event)" styleClass="p-datatable-gridlines" #tabela>
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Nome</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>Status</th>
-            <th class="col-acoes-header"></th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-pessoa>
-        <tr>
-            <td>
-                <span class="p-column-title">Nome</span>
-                {{ pessoa.nome }}
-            </td>
-            <td>
-                <span class="p-column-title">Cidade</span>
-                {{ pessoa.endereco.cidade }}
-            </td>
-            <td>
-                <span class="p-column-title">Estado</span>
-                {{ pessoa.endereco.estado }}
-            </td>
-            <td>
-                <span class="p-column-title">Status</span>
-                <a style="cursor: pointer" (click)="alterarStatus(pessoa)" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'">{{pessoa.ativo ? 'Ativo'
-                    : 'Inativo' }}</a>
-            </td>
-            <td class="main-container__col-acoes">
-                <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" (click)="editar(pessoa)"></a>
-                <button pButton icon="pi pi-trash" (click)="confirmarExclusao(pessoa)" pTooltip="Excluir" tooltipPosition="top"></button>
-            </td>
-        </tr>
-    </ng-template>
-    <ng-template ngIf*="pessoas.length == 0" ng pTemplate="emptymessage">
-        <tr>
-            <td colspan="6">
-                Nenhuma pessoa encontrada
-            </td>
-        </tr>
-    </ng-template>
+<p-table [value]="resultado?.pessoas" [paginator]="true" [rows]="filtro.size" [lazy]="true"
+         [totalRecords]="resultado?.totalRegistros" (onLazyLoad)="aoMudarPagina($event)" styleClass="p-datatable-gridlines" #tabela>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nome</th>
+      <th>Cidade</th>
+      <th>Estado</th>
+      <th>Status</th>
+      <th class="col-acoes-header"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-pessoa>
+    <tr>
+      <td>
+        <span class="p-column-title">Nome</span>
+        {{ pessoa.nome }}
+      </td>
+      <td>
+        <span class="p-column-title">Cidade</span>
+        {{ pessoa.enderecoDTO?.cidade }}
+      </td>
+      <td>
+        <span class="p-column-title">Estado</span>
+        {{ pessoa.enderecoDTO?.estado }}
+      </td>
+      <td>
+        <span class="p-column-title">Status</span>
+        <a style="cursor: pointer" (click)="alterarStatus(pessoa)"
+           [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'">{{pessoa.ativo ? 'Ativo'
+          : 'Inativo' }}</a>
+      </td>
+      <td class="main-container__col-acoes">
+        <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" (click)="editar(pessoa)"></a>
+        <button pButton icon="pi pi-trash" (click)="confirmarExclusao(pessoa)" pTooltip="Excluir"
+                tooltipPosition="top"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template ngIf*="pessoas.length == 0" ng pTemplate="emptymessage">
+    <tr>
+      <td colspan="6">
+        Nenhuma pessoa encontrada
+      </td>
+    </tr>
+  </ng-template>
 </p-table>
