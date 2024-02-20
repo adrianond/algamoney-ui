@@ -25,3 +25,17 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Build em PRD:
+    1 - ng build --configuration=production
+    2 - testar fonte de prd (pasta dist) localmente: node server.js (arquivo de teste - servidor teste local)
+    3 - package.json: "start": "node server.js"
+    4 - package.json: mover as dependecias de dev para dependencies {}
+    5 package.jon: 
+    "engines": {
+    "node": "16.14.2",
+    "npm": "9.8.1"
+  }
+
+

@@ -5,14 +5,17 @@ import { Lancamento } from '../model/lancamento';
 import { LancamentoFiltro } from '../model/lancamentoFiltro';
 import { LancamentosResponse } from '../model/response/lancamentosResponse';
 import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class LancamentoService {
-	baseUrl = 'http://localhost:8080/api/entries';
+	baseUrl : string;
 
-	constructor(protected http: HttpClient, private datePipe: DatePipe) { }
+	constructor(protected http: HttpClient, private datePipe: DatePipe) { 
+		this.baseUrl = `${environment.apiUrl}/api/entries`;
+	}
 
 	public getLancamentos<T>(): Observable<LancamentosResponse> {
 		return this.http.get<LancamentosResponse>(this.baseUrl);

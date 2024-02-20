@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PessoaFiltro } from '../model/pessoaFiltro';
 import { PessoasResponse } from '../model/response/pessoas-response';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -12,9 +13,11 @@ import { PessoasResponse } from '../model/response/pessoas-response';
 	providedIn: 'root'
 })
 export class PessoaService {
-	baseUrl = 'http://localhost:8080/api/persons';
+	baseUrl : string;
 
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) {
+		this.baseUrl = `${environment.apiUrl}/api/persons`;
+	}
 
 	getPessoasComPaginacao(pessoaFiltro: PessoaFiltro): Observable<any> {
 		let params  = this.getParametrosPesquisa(pessoaFiltro);
