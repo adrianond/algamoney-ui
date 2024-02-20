@@ -19,12 +19,12 @@ const routes: Routes = [
 		loadChildren: () => import('./pessoa/pessoa.module').then((m) => m.PessoaModule),
 	},
 	{ path: 'nao-autorizado', component: NaoAutorizadoComponent },
-	{ path: '**', component: PaginaNaoEncontradaComponent }
+	{ path: '**', component: PaginaNaoEncontradaComponent } // senão encontrar nenhuma rota defina acima 
 ];
 
 @NgModule({
 	imports: [
-		RouterModule.forRoot(routes),
+		RouterModule.forRoot(routes), //forRoot, pois trata -se do modulo raiz (app-module)
 	],
 	exports: [RouterModule]
 })

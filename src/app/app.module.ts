@@ -30,7 +30,6 @@ registerLocaleData(ptBr);
 		CoreModule,
 		HttpClientModule,
 		BrowserAnimationsModule,
-		AppRoutingModule,
 		SegurancaModule,
 		//JwtModule.forRoot({
 			//config: {

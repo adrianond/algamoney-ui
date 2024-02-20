@@ -8,7 +8,7 @@
             <div class="p-col-12 p-fluid">
                 <label>Nome</label>
                 <input [ngClass]="{ 'is-invalid': submitted && nome.errors }" pInputText type="text" appInputColorido
-                    upperCaseNoCharacters formControlName="nome" placeholder="* Informe o nome">
+                #campo="inputColorido" cor="yellow"  upperCaseNoCharacters formControlName="nome" placeholder="* Informe o nome">
                 <div class="main-container-errors" *ngIf="submitted && nome.errors?.required">Nome é obrigatório</div>
                 <div class="main-container-errors" *ngIf="submitted && nome.errors?.minlength">Nome deve ter pelo menos 5 caracteres</div>
             </div>
@@ -66,6 +66,12 @@
             <div class="main-container__content-button">
                 <button pButton type="submit" label="Salvar"></button>
                 <a routerLink="/pessoas/consulta">Voltar para a pesquisa</a>
+            </div>
+            <div class="main-container__content-button">
+                <button pButton  label="colorir" (click)="campo.colorir()"></button>
+            </div>
+            <div class="main-container__content-button">
+                <button pButton label="descolorir" (click)="campo.descolorir()"></button>
             </div>
         </div>
     </form>

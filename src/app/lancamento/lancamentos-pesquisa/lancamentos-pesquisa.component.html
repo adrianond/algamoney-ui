@@ -30,7 +30,7 @@
                     <!--Ao carregar a página o método onLazyLoad é executado e já é realizado uma pesquisa
                         assim não precisa chamar a chamada do método de pesquisa no componente, senão
                         será realizado duas pesquisas -->
-                    <p-table [value]="lancamentos" [paginator]="true" [rows]="filtro.size" [lazy]="true" [totalRecords]="totalRegistros"
+                    <p-table [value]="lancamentos" [paginator]="true" [rows]="filtro.size" [responsive]="true" [lazy]="true" [totalRecords]="totalRegistros"
                     (onLazyLoad)="aoMudarPagina($event)" #tabela>
                 
                     <ng-template pTemplate="header">
@@ -38,7 +38,7 @@
                             <th class="main-container__col-data-header">Pessoa</th>
                             <th class="main-container__col-data-header">Descrição</th>
                             <th class="main-container__col-data-header">Vencimento</th>
-                            <th class="main-container__col-data-header">Pagamento</th>
+                            <th class="main-container__-header">Pagamento</th>
                             <th>Valor</th>
                             <th></th>
                         </tr>
@@ -47,7 +47,8 @@
                     <ng-template pTemplate="body" let-lancamento>
                         <tr>
                             <td>
-                                <span class="p-column-title">Pessoa</span>
+                                <!--span usados para responsividade - usa class CSS so primeng-->
+                                 <span class="p-column-title">Pessoa</span>
                                 {{ lancamento.pessoa.nome }}
                             </td>
                             <td>

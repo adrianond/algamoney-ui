@@ -6,12 +6,12 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'consulta', pathMatch: 'full' },
+  { path: '', redirectTo: 'consulta', pathMatch: 'full' }, // pathMatch: 'full' para usar o path completo, ou seja, nada apenas a '/'
   {
     path: 'consulta',
     component: LancamentosPesquisaComponent,
-    canActivate: [AuthGuard],
-    data: { roles: ['ROLE_PESQUISAR_LANCAMENTO'] } 
+    canActivate: [AuthGuard], //add guarda de rotas
+    data: { roles: ['ROLE_PESQUISAR_LANCAMENTO'] } // add roles q podem acessar a rota
   },
   {
     path: 'novo', component: LancamentoCadastroComponent,

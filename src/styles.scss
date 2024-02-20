@@ -50,7 +50,8 @@ h1 {
     margin-left: 20px;
     padding: 5px;
     margin-right: 20px;
-    /*se na tela (navegador) tiver no minino 1200 px, aplica as regras da classe container*/
+    /*se na tela (navegador) tiver no minino 1200 px, aplica as regras da classe container, 
+        senão(se for uma tela menor) pode usar 100% da tela*/
     @media (min-width: 1200px) {
         width: 1170px;
         margin: 0 auto;

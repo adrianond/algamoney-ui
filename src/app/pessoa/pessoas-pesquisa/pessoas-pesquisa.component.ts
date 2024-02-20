@@ -28,6 +28,7 @@ export class PessoasPesquisaComponent implements OnInit {
 		this.pessoaFiltro.page = pagina;
 		this.pessoaService.getPessoasComPaginacao(this.pessoaFiltro).subscribe(
 			(response) => {
+				console.log(response.pessoas.content)
 				this.resultado = {
 					pessoas: response.pessoas.content,
 					totalRegistros: response.pessoas.totalElements

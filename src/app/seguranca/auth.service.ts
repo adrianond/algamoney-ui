@@ -49,6 +49,8 @@ export class AuthService {
 
   isAccessTokenInvalido() {
     const token = this.getToken();
+    console.log('getToken()', token)
+    console.log('token invalido?',  !token || this.jwtHelper.isTokenExpired(token))
     return !token || this.jwtHelper.isTokenExpired(token);
   }
 

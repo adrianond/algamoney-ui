@@ -12,7 +12,7 @@ export class LoginFormComponent implements OnInit {
   jwtPayload: any;
 
   constructor(
-    private service: AuthService,
+    private authService: AuthService,
     private router: Router,
     private errorHanderService: ErrorHanderService,
   ) {}
@@ -21,7 +21,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   login(usuario: string, senha: string) {
-    this.service.login(usuario, senha)
+    this.authService.login(usuario, senha)
     .subscribe(response => {
       this.armazenarToken(response['access_token']);
       this.router.navigateByUrl('/lancamentos/consulta');

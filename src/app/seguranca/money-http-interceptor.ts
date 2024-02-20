@@ -11,13 +11,14 @@ export class MoneyHttpInterceptor implements HttpInterceptor {
 
      /*  
        Utilizamos o método "pipe" do Observable que irá nos ajudar a encadear outras operações neste mesmo Observable.
-       Dentro do método "pipe", usamos um outro operador chamadao "mergeMap", ele fará a "junção" 
+       Dentro do método "pipe", usamos um outro operador chamado "mergeMap", ele fará a "junção" 
        dos dois Observable, o primeiro é o método "obterNovoAccessToken" 
        e o segundo será o nosso retorno, que vem de "handle.next(req)"  
     */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<Object>> {
         if (!req.url.includes('/oauth/token')) {
             if (this.auth.isAccessTokenInvalido()) {
+                console.log('token Invalido!')
                 return this.auth.gerarNovoAccessToken()  
                  .pipe(map((res) => {
                         localStorage.setItem('token', res.access_token);
@@ -28,9 +29,11 @@ export class MoneyHttpInterceptor implements HttpInterceptor {
                         })
                     );
             } else {
+                console.log('token valido!')
                 req = this.addTokenHeader(req)
             }
         }
+        console.log('request: ', req)
         return next.handle(req);
     }
 

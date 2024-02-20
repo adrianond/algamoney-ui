@@ -18,7 +18,7 @@ export class LancamentosPesquisaComponent implements OnInit {
 	lancamentos: any[] = [];
 	filtro = new LancamentoFiltro();
 	totalRegistros: number = 0
-	@ViewChild('tabela') grid!: Table;
+	@ViewChild('tabela') grid!: Table; // mapeado no template (#tabela) para atualizar a grid
 
 	constructor(
 		private service: LancamentoService,
@@ -48,7 +48,9 @@ export class LancamentosPesquisaComponent implements OnInit {
 	}
 
 	aoMudarPagina(event: LazyLoadEvent) {
-		/* event!.first - numero inicial do elemento da pagina atual por exemplo:
+		console.log('event.first', event.first)
+		console.log('event.rows', event.rows)
+		/* event!.first - numero inicial do elemento da pagina atual, por exemplo:
 		pagina 1 - começa no elemento 0
 		pagina 2 - começa no elemento 5
 		pagina 3 -começa no elemento 10 */
@@ -76,6 +78,7 @@ export class LancamentosPesquisaComponent implements OnInit {
 	}
 
 	pesquisar(): void {
+		console.log('pesquisar')
 		this.service.getLancamentos().subscribe(
 			(response) => {
 				this.lancamentos = response.lancamentos;
