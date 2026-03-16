@@ -2,15 +2,15 @@ import { Title } from '@angular/platform-browser';
 import { PessoaService } from './../../pessoa/service/pessoa.service';
 import { Component, OnInit } from '@angular/core';
 import { ErrorHanderService } from 'src/app/core/error-handler-service';
-import { Categoria } from '../model/categoria';
+import { Categoria } from '../../dashboard/dashboard/model/categoria';
 import { CategoriaService } from './../../shared/service/categoria.service';
-import { Lancamento } from '../model/lancamento';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ddMMyyyy } from 'src/app/shared/utils/date-utils';
 import { LancamentoService } from '../service/lancamento.service';
 import { MessageService } from 'primeng/api';
 import { Pessoa } from 'src/app/pessoa/model/model';
 import { Router } from '@angular/router';
+import { Lancamento } from '../model/lancamento';
 
 @Component({
   selector: 'app-lancamento-cadastro',

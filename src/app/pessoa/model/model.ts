@@ -11,7 +11,7 @@ export class Endereco {
   export class Pessoa {
     id!: number;
     nome?: string;
-    endereco = Endereco;
+    enderecoDTO?: Endereco;
     ativo = true;
   }
   

@@ -45,7 +45,7 @@ export class PessoaCadastroComponent implements OnInit {
     this.formCadPessoa = this.formBuilder.group({
       id: [],
       nome: [null, [Validators.required, Validators.minLength(5)]],
-      endereco: this.formBuilder.group({
+      enderecoDTO: this.formBuilder.group({
         logradouro: [null, Validators.required],
         numero: [null, Validators.required],
         complemento: [],
@@ -67,7 +67,7 @@ export class PessoaCadastroComponent implements OnInit {
 
   salvar() {
     if (this.formCadPessoa.valid) {
-      Object.assign(this.pessoa, this.formCadPessoa);
+      Object.assign(this.pessoa, this.formCadPessoa.value);
       this.service.salvar(this.pessoa).subscribe(response => {
         this.messageService.add({ severity: 'success', detail: 'Pessoa cadastrada com sucesso.' })
         this.router.navigateByUrl('/pessoas/consulta');
@@ -81,7 +81,7 @@ export class PessoaCadastroComponent implements OnInit {
 
   atualizar() {
     if (this.formCadPessoa.valid) {
-      Object.assign(this.pessoa, this.formCadPessoa);
+      Object.assign(this.pessoa, this.formCadPessoa.value);
       this.service.alterar(this.pessoa).subscribe(response => {
         this.messageService.add({ severity: 'success', detail: 'Pessoa alterada com sucesso.' })
         this.router.navigateByUrl('/pessoas/consulta');
@@ -96,7 +96,7 @@ export class PessoaCadastroComponent implements OnInit {
   }
 
   get endereco(): AbstractControl {
-    return this.formCadPessoa.get('endereco')!;
+    return this.formCadPessoa.get('enderecoDTO')!;
   }
 
   get logradouro(): AbstractControl {

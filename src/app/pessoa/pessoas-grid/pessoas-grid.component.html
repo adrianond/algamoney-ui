@@ -30,9 +30,12 @@
           : 'Inativo' }}</a>
       </td>
       <td class="main-container__col-acoes">
-        <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" (click)="editar(pessoa)" style="padding: 12px;"></a>
-        <button pButton icon="pi pi-trash" (click)="confirmarExclusao(pessoa)" pTooltip="Excluir"
-                tooltipPosition="top" style="padding: 12px;"></button>
+        <button style="background:none;border:none;cursor:pointer;padding:4px;" pTooltip="Editar" tooltipPosition="top" (click)="editar(pessoa)">
+          <i class="pi pi-pencil" style="color:#3b82f6;font-size:1.1rem;"></i>
+        </button>
+        <button style="background:none;border:none;cursor:pointer;padding:4px;" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(pessoa)">
+          <i class="pi pi-trash" style="color:#ef4444;font-size:1.1rem;"></i>
+        </button>
       </td>
     </tr>
   </ng-template>

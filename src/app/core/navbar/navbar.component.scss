@@ -1,57 +1,184 @@
-
 .navbar {
-    padding: 20px 0 10px;
-    background-color: #1e94d2;
+  background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+  box-shadow: 0 2px 10px rgba(29, 78, 216, 0.35);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.navbar__menu-container {
-    margin-left: 30px;
+.navbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.p-col-12 a {
-    color: #fff;
+/* Brand */
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
 }
 
+.navbar__brand-icon {
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+
+  i {
+    font-size: 1.2rem;
+    color: white;
+  }
+}
+
+.navbar__brand-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.02em;
+}
+
+/* Hamburger button */
+.navbar__hamburger {
+  color: white;
+  font-size: 1.35rem;
+  text-decoration: none;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+}
+
+/* Side menu — começa abaixo da navbar (64px) para não cobrir o hambúrguer */
 .navbar__menu {
-    @media (min-width: 1200px) {
-        width: 210px;
-    }
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    z-index: 9998;
+  position: fixed;
+  top: 64px;
+  bottom: 0;
+  right: 0;
+  width: 270px;
+  margin: 0;
+  padding: 0;
+  z-index: 9998;
+  background: #0f172a;
+  list-style: none;
+  box-shadow: -6px 0 24px rgba(0, 0, 0, 0.35);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 
-    background-color: #3a3633;
-
-    list-style: none;
+  @media (max-width: 480px) {
+    width: 85vw;
+  }
 }
 
+/* User info */
 .navbar__menu__usuario {
-    padding: 18px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #525151;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
 
+  i {
+    font-size: 1.1rem;
+    color: #60a5fa;
+    background: rgba(96, 165, 250, 0.12);
+    padding: 8px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #94a3b8;
     text-transform: uppercase;
-    font-weight: bold;
-    color: #fff;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
+/* Menu items */
 .navbar__menu__menuitem {
-    padding: 15px;
-}
-
-.navbar__menu__menuitem a {
-    color: #c0bbb7;
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.875rem 1.5rem;
+    color: #94a3b8;
     text-decoration: none;
-}
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.18s;
+    border-left: 3px solid transparent;
 
-.navbar__menu__menuitem a:hover {
-    color: #fff;
+    i {
+      font-size: 1rem;
+      width: 20px;
+      text-align: center;
+      opacity: 0.7;
+      transition: opacity 0.18s;
+    }
+
+    &:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.07);
+      border-left-color: #3b82f6;
+
+      i {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .navbar__menu__menuitem--ativo {
-    background-color: #494541;
+  a {
+    color: #60a5fa;
+    background: rgba(59, 130, 246, 0.12);
+    border-left-color: #3b82f6;
+
+    i {
+      opacity: 1;
+      color: #60a5fa;
+    }
+  }
+}
+
+.navbar__menu__menuitem--logout {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  a {
+    color: #f87171;
+
+    i {
+      color: #f87171;
+    }
+
+    &:hover {
+      color: #ef4444;
+      background: rgba(239, 68, 68, 0.1);
+      border-left-color: #ef4444;
+    }
+  }
 }

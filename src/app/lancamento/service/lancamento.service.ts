@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, throwError as observableThrowError } from 'rxjs';
-import { Lancamento } from '../model/lancamento';
-import { LancamentoFiltro } from '../model/lancamentoFiltro';
-import { LancamentosResponse } from '../model/response/lancamentosResponse';
 import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
+import { LancamentosResponse } from '../model/response/lancamentosResponse';
+import { LancamentoFiltro } from '../model/lancamentoFiltro';
+import { Lancamento } from '../model/lancamento';
 
 @Injectable({
 	providedIn: 'root'
@@ -35,7 +35,7 @@ export class LancamentoService {
 		if (filtro.dataVencimentoFim)
 			params = params.set('dataVencimentoAte', this.datePipe.transform(filtro.dataVencimentoFim, 'yyyy-MM-dd')!);
 
-		return this.http.get<T>(`api/entries/paginated/v1`, { params });
+		return this.http.get<T>(`${this.baseUrl}/paginated/v1`, { params });
 	}
 
 	public getLancamento(id: number) {

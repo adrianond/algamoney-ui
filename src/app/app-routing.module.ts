@@ -7,8 +7,12 @@ import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.compo
 const routes: Routes = [
 	{
 		path: '',
-		// lazy loading -> carregamento tardio dos módulos
+		// lazy loading -> carregamento tardio dos módulos (também é necessario que não exista a importação desses modulos no app.module)
 		loadChildren: () => import('./seguranca/seguranca.module').then((m) => m.SegurancaModule),
+	},
+	{
+		path: 'dashboard',
+		loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 	},
 	{
 		path: 'lancamentos',

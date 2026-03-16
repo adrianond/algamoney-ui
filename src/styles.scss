@@ -1,120 +1,310 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~primeicons/primeicons.css';
-@import '~primeng/resources/primeng.min.css';
+/* ============================================
+   AlgaMoney - Global Styles
+   ============================================ */
+
+/* Estilos base já carregados via angular.json:
+   primeicons, lara-light-blue theme, primeng.min.css */
+
+/* ---- Design Tokens ---- */
+:root {
+  --primary: #3b82f6;
+  --primary-dark: #1d4ed8;
+  --primary-light: #dbeafe;
+  --surface: #ffffff;
+  --surface-ground: #f1f5f9;
+  --surface-section: #f8fafc;
+  --text-color: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.12), 0 4px 6px -2px rgba(0,0,0,0.05);
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+
+/* ---- Reset & Base ---- */
+* {
+  box-sizing: border-box;
+}
 
 body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #404c51;
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', Arial, Helvetica, sans-serif;
+  color: var(--text-color);
+  background-color: var(--surface-ground);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Typography ---- */
+h1 {
+  margin: 0 0 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-color);
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid var(--primary);
 }
 
 label {
-    font-weight: bold;
-    margin: 0.2em;
-    font-size: 16px;
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Table ---- */
+table {
+  margin-top: 0;
+  width: 100%;
 }
 
 td {
-    padding: 3px !important;
+  padding: 0.75rem 1rem !important;
+  vertical-align: middle !important;
+  border-bottom: 1px solid var(--border-color) !important;
 }
 
 th {
-    background-color: #e6e6fa !important;
-    padding: 5px !important;
+  background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 0.9rem 1rem !important;
+  font-size: 0.78rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border: none !important;
 }
 
-div {
-    margin-top: 5px;
-}
+/* ---- PrimeNG DataTable overrides ---- */
+.p-datatable {
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  margin-top: 1.25rem;
 
-table {
-    margin-top: 20px;
-}
+  .p-datatable-wrapper {
+    border-radius: var(--radius) var(--radius) 0 0;
+    overflow: hidden;
+  }
 
-button {
-    width: 100px;
-    height: 30px;
-}
+  .p-datatable-tbody > tr {
+    transition: background-color 0.15s;
 
-input {
-    height: 30px;
-}
-
-h1 {
-    margin-top: 0px;
-    font-weight: 400;
-    margin-bottom: 0px;
-}
-
-.main-container {
-    margin-left: 20px;
-    padding: 5px;
-    margin-right: 20px;
-    /*se na tela (navegador) tiver no minino 1200 px, aplica as regras da classe container, 
-        senão(se for uma tela menor) pode usar 100% da tela*/
-    @media (min-width: 1200px) {
-        width: 1170px;
-        margin: 0 auto;
+    &:hover {
+      background-color: var(--primary-light) !important;
     }
+  }
+
+  .p-paginator {
+    border-top: 1px solid var(--border-color);
+    padding: 0.75rem;
+    background: var(--surface);
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
 }
 
+/* ---- Main container ---- */
+.main-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (min-width: 1200px) {
+    width: 1170px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+}
+
+/* ---- Filter / Form card section ---- */
+.main-container-filter-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+/* ---- Error states ---- */
 .is-invalid {
-    border-color: red;
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
 }
 
 .main-container-errors {
-    color: red;
-    margin-left: 5px;
+  color: var(--danger);
+  font-size: 0.78rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
 }
 
+/* ---- Button bar ---- */
 .main-container__content-button {
-    display: flex;
-    column-gap: 10px;
-    margin-top: 10px;
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
 }
 
 .main-container__content-button a {
-    text-decoration: none;
-    margin-top: 8px;
-    color: #333ab7;
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+  }
 }
 
+/* ---- Action column in tables ---- */
 .main-container__col-acoes {
-    //ajusta os icones de acordo com o tamanho da tela
-    max-width: fit-content;
-    margin-left: auto;
-    width: 70px;
+  white-space: nowrap;
+  width: 1%;
+  text-align: right;
 }
 
+/* Botões de ação nas tabelas (editar/excluir) */
+.btn-acao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background: transparent;
+  transition: background 0.18s;
+  margin-left: 0.25rem;
 
-.main-container__col-acoes button {
-    margin-left: 5px;
+  i {
+    font-size: 0.95rem;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 }
 
-.main-container__col-acoes .p-button.p-button-icon-only {
-   width: 25px !important;
-   height: 20px !important;
+.btn-acao--editar i {
+  color: #3b82f6;
 }
 
-.main-container .p-buttonset .p-button:first-of-type {
-    height: 30px !important;
-  }
-
-  .main-container .p-buttonset .p-button:last-of-type {
-    height: 30px !important;
-  }
-
-  .p-dialog .p-dialog-footer {
-      text-align: center;
-      margin-top: 0px;
-  }
-
-  .p-dialog {
-    font-family: Arial, Helvetica, sans-serif;
+.btn-acao--excluir i {
+  color: #ef4444;
 }
 
-  .p-confirm-dialog .p-dialog-content {
-    margin-top: 0px;
+/* ---- Button sets ---- */
+.main-container .p-buttonset .p-button:first-of-type,
+.main-container .p-buttonset .p-button:last-of-type {
+  height: auto !important;
+}
+
+/* ---- Dialogs ---- */
+.p-dialog {
+  font-family: 'Inter', 'Segoe UI', Arial, Helvetica, sans-serif;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-lg) !important;
+
+  .p-dialog-header {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    color: white;
+    border-radius: var(--radius) var(--radius) 0 0;
+    padding: 1.25rem 1.5rem;
+
+    .p-dialog-title {
+      color: white;
+      font-weight: 600;
+    }
+
+    .p-dialog-header-icon {
+      color: rgba(255, 255, 255, 0.8);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+      }
+    }
   }
 
+  .p-dialog-footer {
+    text-align: center;
+    margin-top: 0;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+  }
 
+  .p-dialog-content {
+    padding: 1.5rem;
+  }
+}
+
+.p-confirm-dialog .p-dialog-content {
+  margin-top: 0;
+  padding: 1.5rem;
+}
+
+/* ---- PrimeNG Input enhancements ---- */
+.p-inputtext {
+  border-radius: var(--radius-sm) !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+  }
+}
+
+.p-dropdown,
+.p-calendar .p-inputtext {
+  border-radius: var(--radius-sm) !important;
+}
+
+.p-dropdown-panel {
+  border-radius: var(--radius-sm) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+/* ---- PrimeNG messages ---- */
+.p-message {
+  border-radius: var(--radius-sm) !important;
+  margin-top: 0.35rem !important;
+}
+
+/* ---- Toast ---- */
+.p-toast {
+  font-family: 'Inter', 'Segoe UI', Arial, Helvetica, sans-serif;
+}
+
+.p-toast-message {
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+/* ---- SelectButton ---- */
+.p-selectbutton .p-button {
+  border-radius: var(--radius-sm) !important;
+  font-weight: 500 !important;
+  transition: all 0.2s !important;
+}

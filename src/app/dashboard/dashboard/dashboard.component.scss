@@ -1,0 +1,14 @@
+.dashboard-charts {
+  display: flex;
+  gap: 1.5rem;
+  padding-top: 1rem;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+}
+
+.dashboard-charts__panel {
+  flex: 1;
+  min-width: 0;
+}

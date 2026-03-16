@@ -1,24 +1,26 @@
 .main-container__content-grid {
-    display: grid;
-    column-gap: 8px;
-    grid-template-columns: 80% 20%;
-    //abaixo ou igual 1050 altera para dispaly block
-    @media (max-width: 1050px) {
-        display: block;
-    }
+  display: grid;
+  column-gap: 1.25rem;
+  grid-template-columns: 80% 20%;
+  margin-bottom: 1.25rem;
+
+  @media (max-width: 1050px) {
+    display: block;
+  }
 }
 
 .main-container__content {
-    display: grid;
-    column-gap: 5px;
-    grid-template-columns: repeat(3, 1fr);
-    /* Responsive layout - makes a one column layout instead of a two-column layout */
-    @media (max-width: 1050px) {
-       display: block;
-    }
+  display: grid;
+  column-gap: 1.25rem;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 1.25rem;
+
+  @media (max-width: 1050px) {
+    display: block;
+  }
 }
 
 .main-container__content-grid-child {
-    display: grid;
+  display: grid;
+  row-gap: 0.35rem;
 }
-

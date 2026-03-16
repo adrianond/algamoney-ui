@@ -39,11 +39,11 @@ export class PessoaService {
 	
 
 	salvar<T>(pessoa: Pessoa) {
-	  return this.http.post<T>(this.baseUrl, pessoa);
+	  return this.http.post<T>(this.baseUrl, { pessoaDTO: pessoa });
 	}
 
 	alterar<T>(pessoa: Pessoa) {
-		return this.http.put<T>(`${this.baseUrl}/person/${pessoa.id}`, pessoa);
+		return this.http.put<T>(`${this.baseUrl}/person/${pessoa.id}`, { pessoaDTO: pessoa });
 	}
 
 

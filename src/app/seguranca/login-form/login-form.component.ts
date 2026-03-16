@@ -24,7 +24,7 @@ export class LoginFormComponent implements OnInit {
     this.authService.login(usuario, senha)
     .subscribe(response => {
       this.armazenarToken(response['access_token']);
-      this.router.navigateByUrl('/lancamentos/consulta');
+      this.router.navigateByUrl('/dashboard');
       
     }, (err => {
       this.errorHanderService.handle(err);

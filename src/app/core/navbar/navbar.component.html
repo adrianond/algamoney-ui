@@ -1,17 +1,52 @@
 <nav class="navbar">
-  <div class="navbar__menu-container">
-    <div class="p-grid">
-      <div class="p-col-12">
-        <a href="javascript:;" (click)="exibindoMenu = !exibindoMenu"><i
-            class="pi pi-bars"></i>
-        </a>
+  <div class="navbar__container">
+    <div class="navbar__brand">
+      <div class="navbar__brand-icon">
+        <i class="pi pi-dollar"></i>
       </div>
+      <span class="navbar__brand-text">AlgaMoney</span>
     </div>
-  <ul class="navbar__menu" [hidden]="!exibindoMenu">
-    <li class="navbar__menu__usuario">{{ usuarioLogado }}</li> 
-    <li class="navbar__menu__menuitem" routerLinkActive="navbar__menu__menuitem--ativo" *ngIf="temPermissao('ROLE_PESQUISAR_LANCAMENTO')"><a routerLink="/lancamentos/consulta">Lançamentos</a></li>
-    <li class="navbar__menu__menuitem" routerLinkActive="navbar__menu__menuitem--ativo" *ngIf="temPermissao('ROLE_PESQUISAR_PESSOA')"><a routerLink="/pessoas/consulta">Pessoas</a></li>
-    <li class="navbar__menu__menuitem"><a href="javascript:;" (click)="logout()">Logout</a></li>
+
+    <a href="javascript:;" class="navbar__hamburger" (click)="exibindoMenu = !exibindoMenu">
+      <i class="pi pi-bars"></i>
+    </a>
+  </div>
+
+  <!-- Side menu -->
+  <ul class="navbar__menu" *ngIf="exibindoMenu">
+    <li class="navbar__menu__usuario">
+      <i class="pi pi-user"></i>
+      <span>{{ usuarioLogado }}</span>
+    </li>
+
+    <li class="navbar__menu__menuitem" routerLinkActive="navbar__menu__menuitem--ativo"
+        *ngIf="temPermissao('ROLE_PESQUISAR_LANCAMENTO')">
+      <a routerLink="/lancamentos/consulta" (click)="exibindoMenu = false">
+        <i class="pi pi-list"></i>
+        <span>Lançamentos</span>
+      </a>
+    </li>
+
+    <li class="navbar__menu__menuitem" routerLinkActive="navbar__menu__menuitem--ativo"
+        *ngIf="temPermissao('ROLE_PESQUISAR_PESSOA')">
+      <a routerLink="/pessoas/consulta" (click)="exibindoMenu = false">
+        <i class="pi pi-users"></i>
+        <span>Pessoas</span>
+      </a>
+    </li>
+
+    <li class="navbar__menu__menuitem" routerLinkActive="navbar__menu__menuitem--ativo">
+      <a routerLink="/dashboard" (click)="exibindoMenu = false">
+        <i class="pi pi-chart-bar"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+
+    <li class="navbar__menu__menuitem navbar__menu__menuitem--logout">
+      <a href="javascript:;" (click)="logout()">
+        <i class="pi pi-sign-out"></i>
+        <span>Sair</span>
+      </a>
+    </li>
   </ul>
-</div>
 </nav>

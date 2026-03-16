@@ -13,7 +13,7 @@
                 <div class="main-container-errors" *ngIf="submitted && nome.errors?.minlength">Nome deve ter pelo menos 5 caracteres</div>
             </div>
 
-            <div class="main-container__content-grid" formGroupName="endereco">
+            <div class="main-container__content-grid" formGroupName="enderecoDTO">
                 <div class="main-container__content-grid-child">
                     <label>Logradouro</label>
                     <input [ngClass]="{ 'is-invalid': submitted && logradouro?.errors }" upperCaseNoCharacters
@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <div class="main-container__content" formGroupName="endereco">
+            <div class="main-container__content" formGroupName="enderecoDTO">
                 <div class="main-container__content-grid-child">
                     <label>Complemento</label>
                     <input pInputText type="text" upperCaseNoCharacters formControlName="complemento">
@@ -48,7 +48,7 @@
                 </div>
             </div>
 
-            <div class="main-container__content-grid" formGroupName="endereco">
+            <div class="main-container__content-grid" formGroupName="enderecoDTO">
                 <div class="main-container__content-grid-child">
                     <label>Cidade</label>
                     <input [ngClass]="{ 'is-invalid': submitted && cidade.errors }" pInputText type="text"
